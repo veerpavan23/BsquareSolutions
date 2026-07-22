@@ -9,6 +9,7 @@ import { BookDemoModal } from '@/components/modals/BookDemoModal';
 import { BrochureModal } from '@/components/modals/BrochureModal';
 import { CourseCompareModal } from '@/components/modals/CourseCompareModal';
 import { WishlistDrawer } from '@/components/drawers/WishlistDrawer';
+import { WhatsAppWidget } from '@/components/layout/WhatsAppWidget';
 
 export const metadata: Metadata = {
   title: 'BSquare Solutions & Services | Premier Technology Training Institute',
@@ -33,6 +34,7 @@ export default function RootLayout({
             <BrochureModal />
             <CourseCompareModal />
             <WishlistDrawer />
+            <WhatsAppWidget />
           </AppProvider>
         </ThemeProvider>
       </body>
