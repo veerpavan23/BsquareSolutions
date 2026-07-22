@@ -53,8 +53,8 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4 shrink-0 text-xs font-semibold">
-            <a href="tel:+919876543210" className="hover:underline flex items-center gap-1 text-white">
-              <PhoneCall className="w-3.5 h-3.5 text-[#00C2FF]" /> +91 98765 43210
+            <a href="tel:+917799063096" className="hover:underline flex items-center gap-1 text-white">
+              <PhoneCall className="w-3.5 h-3.5 text-[#00C2FF]" /> +91 77990 63096
             </a>
             <span className="hidden md:inline text-blue-200">|</span>
             <Link href="/login" className="hover:underline flex items-center gap-1 text-white">

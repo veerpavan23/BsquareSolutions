@@ -205,7 +205,7 @@ export const ContactSection: React.FC = () => {
 
               <div className="space-y-3 text-xs">
                 <a
-                  href="https://wa.me/919876543210"
+                  href="https://wa.me/917799063096"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/50 flex items-center justify-between hover:bg-emerald-100 transition-colors"
@@ -224,7 +224,7 @@ export const ContactSection: React.FC = () => {
                   <Phone className="w-5 h-5 text-[#0086F8]" />
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white">Phone Support</div>
-                    <div className="text-slate-600 dark:text-slate-400 font-semibold">+91 98765 43210</div>
+                    <div className="text-slate-600 dark:text-slate-400 font-semibold">+91 77990 63096</div>
                   </div>
                 </div>
 

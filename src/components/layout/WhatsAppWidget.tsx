@@ -8,7 +8,7 @@ interface WhatsAppWidgetProps {
 }
 
 export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
-  phoneNumber = '919876543210', // Default BSquare Business Number
+  phoneNumber = '917799063096', // Updated BSquare Business Number
 }) => {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

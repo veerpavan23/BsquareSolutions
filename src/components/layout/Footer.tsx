@@ -145,8 +145,8 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href="tel:+919876543210" className="hover:underline font-semibold text-white">
-                  +91 98765 43210
+                <a href="tel:+917799063096" className="hover:underline font-semibold text-white">
+                  +91 77990 63096
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
@@ -172,17 +172,6 @@ export const Footer: React.FC = () => {
 
       {/* Floating Action Buttons */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
-        {/* Floating WhatsApp Button */}
-        <a
-          href="https://wa.me/919876543210?text=Hi%20BSquare%20Team,%20I%20want%20to%20know%20more%20about%20your%20technology%20training%20courses."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110"
-          title="Chat on WhatsApp"
-        >
-          <MessageCircle className="w-6 h-6 fill-white" />
-        </a>
-
         {/* Back To Top Button */}
         {showBackToTop && (
           <button
