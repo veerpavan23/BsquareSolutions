@@ -4,16 +4,26 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:test": "cross-env NODE_ENV=test APP_ENV=test ALLOW_TEST_DB_RESET=true DATABASE_URL=file:./test.db next dev -p 3100",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "cross-env NODE_ENV=test ALLOW_TEST_DB_RESET=true DATABASE_URL=file:./test.db vitest run --project integration",
+    "test:coverage": "cross-env NODE_ENV=test ALLOW_TEST_DB_RESET=true DATABASE_URL=file:./test.db vitest run --coverage --project unit --project integration",
+    "test:watch": "vitest",
+    "test:e2e": "cross-env NODE_ENV=test ALLOW_TEST_DB_RESET=true DATABASE_URL=file:./test.db playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@prisma/client": "^6.2.1",
+    "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
     "lucide-react": "^1.25.0",
     "next": "^16.2.10",
+    "next-auth": "^5.0.0-beta.25",
     "next-themes": "^0.4.6",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -22,15 +32,25 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.3.3",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@vitest/coverage-v8": "^3.2.7",
     "autoprefixer": "^10.5.4",
+    "cross-env": "^7.0.3",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.10",
     "postcss": "^8.5.20",
+    "prisma": "^6.2.1",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "tsx": "^4.23.1",
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.7"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }

@@ -6,6 +6,18 @@
 # testing
 /coverage
 
+# Test databases
+prisma/test.db
+prisma/test.db-journal
+prisma/test.db-shm
+prisma/test.db-wal
+
+# Playwright
+playwright/.auth/
+test-results/
+playwright-report/
+blob-report/
+
 # next.js
 /.next/
 /out/
