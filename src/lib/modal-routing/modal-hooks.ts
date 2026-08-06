@@ -70,11 +70,10 @@ export function useModalRoute(modalType: ModalType) {
   const isOpen = currentModal === modalType;
   const { openModal } = useModalNavigation();
 
-  const closeModal = () => {
+  const getCloseUrl = () => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.delete('modal');
 
-    // Remove all modal-specific parameters
     const allAllowedParams = new Set(
       Object.values(modalRegistry).flatMap((m) => m.allowedParams)
     );
@@ -83,9 +82,11 @@ export function useModalRoute(modalType: ModalType) {
     }
 
     const searchStr = newSearchParams.toString();
-    const query = searchStr ? `?${searchStr}` : '';
-    
-    router.push(`${pathname}${query}`, { scroll: false });
+    return searchStr ? `${pathname}?${searchStr}` : pathname;
+  };
+
+  const closeModal = () => {
+    router.push(getCloseUrl(), { scroll: false });
   };
 
   const getParam = (key: string) => {
@@ -94,5 +95,5 @@ export function useModalRoute(modalType: ModalType) {
     return searchParams.get(key);
   };
 
-  return { isOpen, getParam, openModal, closeModal };
+  return { isOpen, getParam, openModal, closeModal, getCloseUrl };
 }
