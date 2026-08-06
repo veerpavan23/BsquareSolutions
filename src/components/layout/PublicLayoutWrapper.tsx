@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { usePathname } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -23,11 +23,13 @@ export function PublicLayoutWrapper({ children }: { children: React.ReactNode })
       <Navbar />
       <div className="flex-grow">{children}</div>
       <Footer />
-      <SearchModal />
-      <CourseCompareModal />
+      <Suspense fallback={null}>
+        <SearchModal />
+        <CourseCompareModal />
+        <PublicModalHost />
+      </Suspense>
       <WishlistDrawer />
       <WhatsAppWidget />
-      <PublicModalHost />
     </>
   );
 }

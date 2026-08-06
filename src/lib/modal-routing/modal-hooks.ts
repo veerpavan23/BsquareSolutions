@@ -8,12 +8,12 @@ export type ModalParams = Record<string, string | undefined>;
 export function useModalNavigation() {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const openModal = (modalType: ModalType, params?: ModalParams) => {
     if (!isValidModalType(modalType)) return;
 
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const currentSearch = typeof window !== 'undefined' ? window.location.search : '';
+    const newSearchParams = new URLSearchParams(currentSearch);
     const allowedParams = modalRegistry[modalType].allowedParams;
 
     // Remove any stale modal-specific params from a potentially different open modal
@@ -40,7 +40,8 @@ export function useModalNavigation() {
   };
 
   const closeModal = () => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const currentSearch = typeof window !== 'undefined' ? window.location.search : '';
+    const newSearchParams = new URLSearchParams(currentSearch);
     newSearchParams.delete('modal');
 
     // Remove all modal-specific parameters
