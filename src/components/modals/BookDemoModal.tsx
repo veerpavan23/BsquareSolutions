@@ -162,21 +162,21 @@ export const BookDemoModal: React.FC = () => {
                 </label>
                 <select
                   multiple
-                  size={4}
+                  size={5}
                   value={formData.courseIds}
                   onChange={(e) => {
                     const selected = Array.from(e.target.selectedOptions, option => option.value);
                     setFormData({ ...formData, courseIds: selected });
                   }}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0086F8]"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#0086F8]"
                 >
                   {COURSES.map((course) => (
                     <React.Fragment key={course.id}>
                       <option value={course.title}>
-                        {course.title} ({course.academy})
+                        {course.title}
                       </option>
                       <option value={`${course.title} + Internship`}>
-                        {course.title} + Internship Program
+                        {course.title} + Internship
                       </option>
                     </React.Fragment>
                   ))}

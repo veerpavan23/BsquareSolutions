@@ -323,7 +323,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
                       className="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-[#0086F8]"
                     >
                       <option value={course.title}>{course.title} Only</option>
-                      <option value={`${course.title} + Internship`}>{course.title} + Internship Program</option>
+                      <option value={`${course.title} + Internship`}>{course.title} + Internship</option>
                     </select>
                   </div>
 
