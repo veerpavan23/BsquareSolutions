@@ -62,18 +62,8 @@ export const BookDemoModal: React.FC = () => {
       payload.append('email', formData.email);
       payload.append('phone', formData.phone);
       
-      const mapCourseToSalesforce = (courseName: string) => {
-        if (courseName.includes('Salesforce Administrator')) return courseName.includes('Internship') ? 'Salesforce Administrator + Internship' : 'Salesforce Administrator';
-        if (courseName.includes('Platform Developer I')) return courseName.includes('Internship') ? 'Platform Developer I + Internship' : 'Platform Developer I';
-        if (courseName.includes('Power BI')) return courseName.includes('Internship') ? 'Power BI Masterclass + Internship' : 'Power BI Masterclass';
-        if (courseName.includes('Tableau')) return courseName.includes('Internship') ? 'Tableau Masterclass + Internship' : 'Tableau Masterclass';
-        if (courseName.includes('Data Analytics')) return courseName.includes('Internship') ? 'Data Analytics Bootcamp + Internship' : 'Data Analytics Bootcamp';
-        // Fallbacks that might require SF picklist updates if users select them
-        return courseName;
-      };
-
       formData.courseIds.forEach(course => {
-        payload.append('00Nfw00000Gnah3', mapCourseToSalesforce(course));
+        payload.append('00Nfw00000Gnah3', course);
       });
       
       payload.append('00Nfw00000GnXZW', formData.preferredMode);
