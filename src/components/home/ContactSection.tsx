@@ -20,16 +20,54 @@ export const ContactSection: React.FC = () => {
     setMounted(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone) {
       setStatus('error');
       return;
     }
     setStatus('loading');
-    setTimeout(() => {
+    
+    try {
+      const payload = new URLSearchParams();
+      payload.append('oid', '00D5g00000FD5Sr');
+      payload.append('retURL', 'https://bsquare-solutions.vercel.app/');
+      payload.append('last_name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('phone', formData.phone);
+      
+      formData.technologies.forEach(course => {
+        payload.append('00Nfw00000Gnah3', course);
+      });
+      
+      if (formData.message) {
+        payload.append('description', formData.message);
+      }
+      
+      payload.append('lead_source', 'Web');
+      payload.append('recordType', '0125g000002LdEx');
+
+      await fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: payload,
+      });
+
       setStatus('success');
-    }, 1200);
+      setFormData(prev => ({
+        ...prev,
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      }));
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -142,17 +180,25 @@ export const ContactSection: React.FC = () => {
                     }}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0086F8] text-sm"
                   >
-                    <option value="Salesforce Administrator">Salesforce Administrator</option>
-                    <option value="Salesforce Administrator + Internship">Salesforce Administrator + Internship</option>
-                    <option value="Platform Developer I">Platform Developer I (Apex & LWC)</option>
-                    <option value="Platform Developer I + Internship">Platform Developer I + Internship</option>
-                    <option value="Power BI Masterclass">Power BI Masterclass (PL-300)</option>
-                    <option value="Power BI Masterclass + Internship">Power BI Masterclass + Internship</option>
-                    <option value="Tableau Masterclass">Tableau Desktop & Server</option>
-                    <option value="Tableau Masterclass + Internship">Tableau Masterclass + Internship</option>
-                    <option value="Data Analytics Bootcamp">Business & Data Analytics</option>
-                    <option value="Data Analytics Bootcamp + Internship">Business & Data Analytics + Internship</option>
-                    <option value="Corporate Training">Corporate Workforce Training</option>
+                    <option value="Corporate Training">Corporate Training</option>
+                    <option value="Salesforce Administrator (ADM-201)">Salesforce Administrator (ADM-201)</option>
+                    <option value="Salesforce Administrator (ADM-201) + Internship">Salesforce Administrator (ADM-201) + Internship</option>
+                    <option value="Platform App Builder (CRT-801)">Platform App Builder (CRT-801)</option>
+                    <option value="Platform App Builder (CRT-801) + Internship">Platform App Builder (CRT-801) + Internship</option>
+                    <option value="Platform Developer I (Apex & Visualforce)">Platform Developer I (Apex & Visualforce)</option>
+                    <option value="Platform Developer I (Apex & Visualforce) + Internship">Platform Developer I (Apex & Visualforce) + Internship</option>
+                    <option value="Lightning Web Components (LWC) & Modern JS">Lightning Web Components (LWC) & Modern JS</option>
+                    <option value="Lightning Web Components (LWC) & Modern JS + Internship">Lightning Web Components (LWC) & Modern JS + Internship</option>
+                    <option value="Power BI Complete Masterclass (PL-300)">Power BI Complete Masterclass (PL-300)</option>
+                    <option value="Power BI Complete Masterclass (PL-300) + Internship">Power BI Complete Masterclass (PL-300) + Internship</option>
+                    <option value="Microsoft Fabric & Advanced DAX Engineering">Microsoft Fabric & Advanced DAX Engineering</option>
+                    <option value="Microsoft Fabric & Advanced DAX Engineering + Internship">Microsoft Fabric & Advanced DAX Engineering + Internship</option>
+                    <option value="Tableau Desktop & Server Master Class">Tableau Desktop & Server Master Class</option>
+                    <option value="Tableau Desktop & Server Master Class + Internship">Tableau Desktop & Server Master Class + Internship</option>
+                    <option value="Business & Data Analytics Career Bootcamp">Business & Data Analytics Career Bootcamp</option>
+                    <option value="Business & Data Analytics Career Bootcamp + Internship">Business & Data Analytics Career Bootcamp + Internship</option>
+                    <option value="PMP Certification & Professional Scrum Master (PSM I)">PMP Certification & Professional Scrum Master (PSM I)</option>
+                    <option value="PMP Certification & Professional Scrum Master (PSM I) + Internship">PMP Certification & Professional Scrum Master (PSM I) + Internship</option>
                   </select>
                 </div>
 
