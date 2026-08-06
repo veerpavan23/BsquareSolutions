@@ -4,11 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
 import { COURSES } from '@/data/courses';
 import { X, Calendar, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 import { useModalRoute } from '@/lib/modal-routing/modal-hooks';
 
 export const BookDemoModal: React.FC = () => {
-  const { isOpen, closeModal, getParam } = useModalRoute('book-demo');
+  const { isOpen, closeModal, getCloseUrl, getParam } = useModalRoute('book-demo');
   const courseParam = getParam('course');
   
   // Validate courseParam exists in COURSES, else fallback
@@ -72,12 +73,14 @@ export const BookDemoModal: React.FC = () => {
           <div className="flex items-center gap-2 text-[#071D59] dark:text-white font-heading font-bold text-lg">
             <Calendar className="w-5 h-5 text-[#0086F8]" /> Book a Free Live Demo Class
           </div>
-          <button
-            onClick={handleClose}
-            className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg"
+          <Link
+            href={getCloseUrl()}
+            onClick={() => setStatus('idle')}
+            scroll={false}
+            className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg inline-flex"
           >
             <X className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
 
         <div className="p-6">
@@ -92,12 +95,14 @@ export const BookDemoModal: React.FC = () => {
               <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto">
                 Thank you <span className="font-semibold text-[#0086F8]">{formData.name}</span>. Our academic counselor will reach out via WhatsApp & Phone to send your live class joining link.
               </p>
-              <button
-                onClick={handleClose}
-                className="mt-4 px-6 py-2.5 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold rounded-xl transition-all"
+              <Link
+                href={getCloseUrl()}
+                onClick={() => setStatus('idle')}
+                scroll={false}
+                className="mt-4 px-6 py-2.5 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold rounded-xl transition-all inline-block"
               >
                 Close Window
-              </button>
+              </Link>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">

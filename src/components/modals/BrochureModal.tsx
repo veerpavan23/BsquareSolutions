@@ -4,11 +4,12 @@ import React, { useState } from 'react';
 import { useApp } from '@/context/AppContext';
 import { COURSES } from '@/data/courses';
 import { X, Download, CheckCircle2, FileText, Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 import { useModalRoute } from '@/lib/modal-routing/modal-hooks';
 
 export const BrochureModal: React.FC = () => {
-  const { isOpen, closeModal, getParam } = useModalRoute('brochure');
+  const { isOpen, closeModal, getCloseUrl, getParam } = useModalRoute('brochure');
   const courseParam = getParam('course');
   
   // Validate courseParam exists in COURSES, else fallback
@@ -43,9 +44,14 @@ export const BrochureModal: React.FC = () => {
           <div className="flex items-center gap-2 text-[#071D59] dark:text-white font-heading font-bold">
             <FileText className="w-5 h-5 text-[#0086F8]" /> Request Course Brochure
           </div>
-          <button onClick={handleClose} className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <Link 
+            href={getCloseUrl()}
+            onClick={() => setStatus('idle')}
+            scroll={false}
+            className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-white inline-flex"
+          >
             <X className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
 
         <div className="p-6">
@@ -58,12 +64,14 @@ export const BrochureModal: React.FC = () => {
               <p className="text-xs text-slate-600 dark:text-slate-300">
                 The detailed syllabus brochure for <span className="font-semibold text-[#0086F8]">{selectedCourse.title}</span> will be emailed to <span className="font-mono text-xs">{email}</span> and shared via WhatsApp.
               </p>
-              <button
-                onClick={handleClose}
-                className="mt-4 w-full py-2.5 bg-[#0086F8] text-white font-semibold rounded-xl text-sm"
+              <Link
+                href={getCloseUrl()}
+                onClick={() => setStatus('idle')}
+                scroll={false}
+                className="mt-4 w-full py-2.5 bg-[#0086F8] text-white font-semibold rounded-xl text-sm inline-block"
               >
                 Close
-              </button>
+              </Link>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
