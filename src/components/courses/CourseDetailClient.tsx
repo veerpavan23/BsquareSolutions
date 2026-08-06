@@ -55,7 +55,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Course Header Banner */}
-        <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden bg-gradient-to-r from-[#071D59] via-[#0B2570] to-[#071D59] text-white">
+        <div className="rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden bg-gradient-to-r from-[#071D59] via-[#0B2570] to-[#071D59] text-white">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div className="lg:col-span-8 space-y-4">
               <div className="flex flex-wrap items-center gap-2">
@@ -105,7 +105,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
             </div>
 
             {/* Target Certification Card */}
-            <div className="lg:col-span-4 glass-panel rounded-2xl p-6 border border-white/20 bg-white/10 text-white space-y-3">
+            <div className="lg:col-span-4 rounded-2xl p-6 border border-white/20 bg-white/10 text-white space-y-3 shadow-inner backdrop-blur-sm">
               <div className="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
                 <Award className="w-5 h-5" /> Target Certification
               </div>
