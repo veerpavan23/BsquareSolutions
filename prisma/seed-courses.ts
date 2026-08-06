@@ -28,7 +28,7 @@ async function main() {
   console.log(`Found ${academies.length} unique academies.`);
 
   // Create Academies
-  const dbAcademies = {};
+  const dbAcademies: Record<string, any> = {};
   for (const academyData of academies) {
     const created = await prisma.academy.upsert({
       where: { slug: academyData.slug },
