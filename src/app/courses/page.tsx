@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { courseReadService } from '@/modules/public/course-read.service';
 import { CourseFiltersClient } from './course-filters-client';
 import { Clock, Layers, Star, Play, Download, GraduationCap } from 'lucide-react';
-import { academyReadService } from '@/modules/public/academy-read.service';
+import { COURSES } from '@/data/courses';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,21 +17,30 @@ export default async function CoursesPage({
 }) {
   const params = await searchParams;
   
-  const allCourses = await courseReadService.getAllActiveCourses(params.category !== 'all' ? params.category : undefined);
-  const academies = await academyReadService.getAllActiveVerticals();
+  // Extract unique categories from static COURSES
+  const uniqueCategoryIds = Array.from(new Set(COURSES.map(c => c.categoryId)));
+  const academies = uniqueCategoryIds.map(categoryId => {
+    const course = COURSES.find(c => c.categoryId === categoryId);
+    return {
+      id: categoryId,
+      name: course?.academy || categoryId,
+      slug: categoryId
+    };
+  });
   
-  // Client side filtering for search and level (to avoid full round trips for search typing)
-  // Actually, we can just pass the data to a client component that renders the list,
-  // or we can filter it server side based on searchParams.
-  // Since we already fetched, let's filter server side.
+  const allCourses = params.category && params.category !== 'all' 
+    ? COURSES.filter(c => c.academy === params.category || c.categoryId === params.category)
+    : COURSES;
 
   const filteredCourses = allCourses.filter((c) => {
-    const matchesLevel = !params.level || params.level === 'all' || c.level.toLowerCase() === params.level.toLowerCase();
+    const matchesLevel = !params.level || params.level === 'all' || 
+      (c.level && c.level.toLowerCase().includes(params.level.toLowerCase()));
+    
     const matchesSearch =
       !params.search ||
       params.search.trim() === '' ||
       c.title.toLowerCase().includes(params.search.toLowerCase()) ||
-      c.academy.name.toLowerCase().includes(params.search.toLowerCase());
+      c.academy.toLowerCase().includes(params.search.toLowerCase());
 
     return matchesLevel && matchesSearch;
   });
@@ -79,7 +87,7 @@ export default async function CoursesPage({
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-3 py-1 text-[10px] font-extrabold uppercase rounded-full bg-blue-50 dark:bg-blue-950 text-[#0086F8]">
-                      {course.academy.name}
+                      {course.academy}
                     </span>
                   </div>
 
@@ -96,15 +104,15 @@ export default async function CoursesPage({
                   <div className="grid grid-cols-2 gap-2 my-4 p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 text-xs">
                     <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
                       <Clock className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-                      <span>{course.durationValue} {course.durationUnit}</span>
+                      <span>{course.duration}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
                       <Layers className="w-3.5 h-3.5 text-cyan-500 shrink-0" />
-                      <span>{course.level}</span>
+                      <span className="line-clamp-1">{course.level}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 col-span-2">
                       <GraduationCap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                      <span className="font-bold">{course.code}</span>
+                      <span className="font-bold line-clamp-1">{course.certificationTarget}</span>
                     </div>
                   </div>
                 </div>
@@ -112,25 +120,14 @@ export default async function CoursesPage({
                 <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
                   <div className="grid grid-cols-2 gap-2">
                     <Link
-                      href={`/contact?course=${course.slug}`}
+                      href={`/courses/${course.slug}?book-demo=true`}
                       className="py-2.5 px-3 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-1 text-center"
                     >
                       <Play className="w-3.5 h-3.5 fill-white" /> Book Demo
                     </Link>
-                    {course.brochureUrl ? (
-                      <a
-                        href={course.brochureUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="py-2.5 px-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-1"
-                      >
-                        <Download className="w-3.5 h-3.5" /> Brochure
-                      </a>
-                    ) : (
-                      <div className="py-2.5 px-3 bg-slate-100/50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 font-semibold rounded-xl text-xs flex items-center justify-center gap-1">
-                        Brochure N/A
-                      </div>
-                    )}
+                    <div className="py-2.5 px-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-1 cursor-pointer">
+                      <Download className="w-3.5 h-3.5" /> Brochure
+                    </div>
                   </div>
                   <Link
                     href={`/courses/${course.slug}`}
