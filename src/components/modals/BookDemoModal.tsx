@@ -57,7 +57,7 @@ export const BookDemoModal: React.FC = () => {
     try {
       const payload = new URLSearchParams();
       payload.append('oid', '00D5g00000FD5Sr');
-      payload.append('retURL', window.location.href);
+      payload.append('retURL', window.location.origin);
       payload.append('last_name', formData.name);
       payload.append('email', formData.email);
       payload.append('phone', formData.phone);
