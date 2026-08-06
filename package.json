@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:test": "cross-env NODE_ENV=test APP_ENV=test ALLOW_TEST_DB_RESET=true DATABASE_URL=file:./test.db next dev -p 3100",
-    "build": "next build",
+    "build": "prisma generate && prisma db push && next build",
     "start": "next start",
     "lint": "eslint src",
     "test": "npm run test:unit && npm run test:integration",
