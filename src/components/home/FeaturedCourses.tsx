@@ -101,28 +101,6 @@ export const FeaturedCourses: React.FC = () => {
                     <span className="px-3 py-1 text-[10px] font-extrabold uppercase rounded-full bg-blue-50 dark:bg-blue-950 text-[#0086F8]">
                       {course.academy}
                     </span>
-                    <div className="flex items-center space-x-1">
-                      <button
-                        onClick={() => toggleCompareCourse(course.id)}
-                        className={`p-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition-colors ${
-                          inCompare
-                            ? 'bg-blue-100 text-[#0086F8] dark:bg-blue-950'
-                            : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
-                        }`}
-                        title="Compare Course"
-                      >
-                        <Scale className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => toggleWishlistCourse(course.id)}
-                        className={`p-1.5 rounded-lg transition-colors ${
-                          inWishlist ? 'text-rose-500 fill-rose-500' : 'text-slate-400 hover:text-rose-500'
-                        }`}
-                        title="Save to Wishlist"
-                      >
-                        <Heart className="w-4 h-4" />
-                      </button>
-                    </div>
                   </div>
 
                   {/* Title & Description */}
