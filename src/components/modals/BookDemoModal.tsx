@@ -22,7 +22,7 @@ export const BookDemoModal: React.FC = () => {
     phone: '',
     courseIds: [defaultCourseId],
     preferredMode: 'Online Live',
-    preferredTime: 'Morning (08:00 AM)',
+    preferredTime: 'Morning',
     consent: true,
   });
 
@@ -54,10 +54,38 @@ export const BookDemoModal: React.FC = () => {
     setStatus('loading');
     setErrorMessage('');
 
-    // Simulate API network request (Configurable Service Layer)
-    setTimeout(() => {
+    try {
+      const payload = new URLSearchParams();
+      payload.append('oid', '00D5g00000FD5Sr');
+      payload.append('retURL', window.location.href);
+      payload.append('last_name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('phone', formData.phone);
+      
+      formData.courseIds.forEach(course => {
+        payload.append('00Nfw00000Gnah3', course);
+      });
+      
+      payload.append('00Nfw00000GnXZW', formData.preferredMode);
+      payload.append('00Nfw00000Gnb3d', formData.preferredTime);
+      payload.append('lead_source', 'Web');
+      payload.append('recordType', '0125g000002LdEx');
+
+      await fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: payload,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+
       setStatus('success');
-    }, 1200);
+    } catch (error) {
+      console.error('Submission error:', error);
+      setStatus('error');
+      setErrorMessage('Something went wrong. Please try again.');
+    }
   };
 
   const handleClose = () => {
