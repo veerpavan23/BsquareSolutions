@@ -157,33 +157,7 @@ export const Navbar: React.FC = () => {
             <Search className="w-5 h-5" />
           </button>
 
-          {/* Compare Button */}
-          <button
-            onClick={() => setIsCompareOpen(true)}
-            className="relative p-1.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            title="Compare Courses"
-          >
-            <Scale className="w-5 h-5" />
-            {mounted && comparedCourseIds.length > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#0086F8] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                {comparedCourseIds.length}
-              </span>
-            )}
-          </button>
 
-          {/* Wishlist Button */}
-          <button
-            onClick={() => setIsWishlistOpen(true)}
-            className="relative p-1.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-            title="Saved Wishlist"
-          >
-            <Heart className="w-5 h-5" />
-            {mounted && wishlistCourseIds.length > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                {wishlistCourseIds.length}
-              </span>
-            )}
-          </button>
 
           {/* Theme Toggle Button */}
           <button
