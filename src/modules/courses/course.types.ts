@@ -26,6 +26,7 @@ export type PublicCourseListDto = {
     name: string;
     slug: string;
   };
+  brochureUrl?: string | null;
 };
 
 export type PublicCourseDetailDto = PublicCourseListDto & {

@@ -1,4 +1,5 @@
-import { CoursePublishValidator } from '../publish.validator';
+import { describe, it, expect } from 'vitest';
+import { CoursePublishValidator } from '../course.publish.validator';
 
 describe('CoursePublishValidator', () => {
   it('should pass if all required fields are present', () => {
@@ -7,17 +8,10 @@ describe('CoursePublishValidator', () => {
       description: 'A valid description',
       thumbnailUrl: 'https://example.com/image.jpg',
       academyId: 'some-academy-id',
-      modules: [
-        {
-          title: 'Module 1',
-          topics: [{ title: 'Topic 1' }],
-        },
-      ],
+      modules: [{ title: 'Module 1', topics: [{ title: 'Topic 1' }] }],
     };
 
-    const result = CoursePublishValidator.validateForPublish(course);
-    expect(result.isValid).toBe(true);
-    expect(result.errors.length).toBe(0);
+    expect(() => CoursePublishValidator.validateForPublishing(course)).not.toThrow();
   });
 
   it('should fail if title is missing', () => {
@@ -28,9 +22,7 @@ describe('CoursePublishValidator', () => {
       modules: [{ title: 'Module 1', topics: [{ title: 'Topic 1' }] }],
     };
 
-    const result = CoursePublishValidator.validateForPublish(course);
-    expect(result.isValid).toBe(false);
-    expect(result.errors).toContain('Course title is required');
+    expect(() => CoursePublishValidator.validateForPublishing(course)).toThrow('Course name is required.');
   });
 
   it('should fail if no modules are present', () => {
@@ -42,9 +34,7 @@ describe('CoursePublishValidator', () => {
       modules: [],
     };
 
-    const result = CoursePublishValidator.validateForPublish(course);
-    expect(result.isValid).toBe(false);
-    expect(result.errors).toContain('Course must have at least one module in the curriculum');
+    expect(() => CoursePublishValidator.validateForPublishing(course)).toThrow('At least one curriculum module must be added.');
   });
 
   it('should fail if thumbnail is missing', () => {
@@ -55,8 +45,6 @@ describe('CoursePublishValidator', () => {
       modules: [{ title: 'Module 1', topics: [{ title: 'Topic 1' }] }],
     };
 
-    const result = CoursePublishValidator.validateForPublish(course);
-    expect(result.isValid).toBe(false);
-    expect(result.errors).toContain('Course thumbnail is required');
+    expect(() => CoursePublishValidator.validateForPublishing(course)).toThrow('A course thumbnail or banner image is required.');
   });
 });

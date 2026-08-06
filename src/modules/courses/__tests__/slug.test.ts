@@ -1,4 +1,5 @@
-import { generateSlug, isSlugUnique } from '@/lib/utils'; // if you have this, otherwise mock
+import { describe, it, expect } from 'vitest';
+
 // In this case, we implemented it in the repository. So let's test the repository or service.
 
 describe('Course Slug Uniqueness', () => {

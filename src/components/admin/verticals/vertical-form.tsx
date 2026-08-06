@@ -10,7 +10,6 @@ import Link from 'next/link';
 
 import { createAcademySchema, updateAcademySchema, CreateAcademyInput, UpdateAcademyInput } from '@/modules/academies/academy.schemas';
 import { createAcademyAction, updateAcademyAction } from '@/modules/academies/academy.actions';
-import { MediaPicker } from '@/components/admin/media/media-picker'; // Assuming there is one
 
 interface VerticalFormProps {
   initialData?: Academy;

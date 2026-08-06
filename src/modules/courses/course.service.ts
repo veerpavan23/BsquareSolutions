@@ -17,7 +17,7 @@ export class CourseService {
   async getById(id: string) {
     const course = await repository.findById(id);
     if (!course) {
-      throw new BusinessRuleError('Course not found', 'NOT_FOUND');
+      throw new BusinessRuleError('Course not found');
     }
     return course;
   }
@@ -25,7 +25,7 @@ export class CourseService {
   async getBySlug(slug: string) {
     const course = await repository.findBySlug(slug);
     if (!course) {
-      throw new BusinessRuleError('Course not found', 'NOT_FOUND');
+      throw new BusinessRuleError('Course not found');
     }
     return course;
   }
@@ -39,7 +39,7 @@ export class CourseService {
     const slug = this.formatSlug(data.slug || data.title);
     const existingSlug = await repository.findBySlug(slug);
     if (existingSlug) {
-      throw new BusinessRuleError(`A Course with slug "${slug}" already exists.`, 'CONFLICT');
+      throw new BusinessRuleError(`A Course with slug "${slug}" already exists.`);
     }
 
     const { academyId, ...rest } = data;
@@ -48,13 +48,13 @@ export class CourseService {
     const course = await repository.create({
       ...rest,
       slug,
-      academy: { connect: { id: academyId } },
-      category: { connect: { id: categoryId } },
+      academyId: academyId,
+      categoryId: categoryId,
       status: CourseStatus.DRAFT,
       currency: 'INR',
     });
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'CREATE_RECORD',
@@ -74,7 +74,7 @@ export class CourseService {
       const slug = this.formatSlug(data.slug);
       const duplicate = await repository.findBySlug(slug);
       if (duplicate && duplicate.id !== id) {
-        throw new BusinessRuleError(`A Course with slug "${slug}" already exists.`, 'CONFLICT');
+        throw new BusinessRuleError(`A Course with slug "${slug}" already exists.`);
       }
       data.slug = slug;
     }
@@ -85,12 +85,12 @@ export class CourseService {
     if (academyId && academyId !== existing.academy.id) {
       const categoryId = await repository.getDefaultCategoryId(academyId);
       updateData.academy = { connect: { id: academyId } };
-      updateData.category = { connect: { id: categoryId } };
+      updateData.categoryId = categoryId;
     }
 
     const updated = await repository.update(id, updateData, recordVersion!);
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UPDATE_RECORD',
@@ -105,7 +105,7 @@ export class CourseService {
   async updateCurriculum(data: UpdateCurriculumInput, actorId: string, actorEmail: string) {
     const updated = await repository.updateCurriculum(data.courseId, data.recordVersion, data.modules);
     
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UPDATE_RECORD',
@@ -130,7 +130,7 @@ export class CourseService {
       recordVersion
     );
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'PUBLISH_COURSE',
@@ -149,7 +149,7 @@ export class CourseService {
       recordVersion
     );
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UNPUBLISH_COURSE',
@@ -169,7 +169,7 @@ export class CourseService {
     );
     await repository.softDelete(id);
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'DELETE_RECORD',
@@ -190,7 +190,7 @@ export class CourseService {
       recordVersion
     );
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UPDATE_RECORD',

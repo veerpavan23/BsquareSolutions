@@ -1,4 +1,4 @@
-import { PrismaClient, PublishStatus, CourseLevel } from '@prisma/client';
+import { PrismaClient, PublishStatus, CourseLevel, DurationUnit } from '@prisma/client';
 import { COURSES } from '../src/data/courses';
 
 const prisma = new PrismaClient();
@@ -71,7 +71,7 @@ async function main() {
         description: course.fullOverview,
         level: course.level.split(' ')[0].toUpperCase() as CourseLevel, 
         durationValue: parseInt(course.duration.split(' ')[0]) || 4,
-        durationUnit: course.duration.includes('Week') ? 'WEEKS' : 'HOURS',
+        durationUnit: course.duration.includes('Week') ? 'WEEKS' as DurationUnit : 'HOURS' as DurationUnit,
         status: 'PUBLISHED',
         thumbnailUrl: 'https://via.placeholder.com/600x400?text=Course+Thumbnail',
         code: course.id.toUpperCase().substring(0, 10),

@@ -5,6 +5,7 @@ export type AdminAcademyDto = {
   name: string;
   slug: string;
   shortDescription: string | null;
+  description?: string | null;
   fullDescription: string | null;
   icon: string | null;
   thumbnail: string | null;
@@ -26,6 +27,7 @@ export type PublicAcademyDto = {
   name: string;
   slug: string;
   shortDescription: string | null;
+  description?: string | null;
   fullDescription: string | null;
   icon: string | null;
   thumbnail: string | null;

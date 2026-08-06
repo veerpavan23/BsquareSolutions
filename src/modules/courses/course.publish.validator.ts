@@ -39,8 +39,7 @@ export class CoursePublishValidator {
 
     if (errors.length > 0) {
       throw new BusinessRuleError(
-        `Course cannot be published. Please resolve the following issues:\n- ${errors.join('\n- ')}`,
-        'VALIDATION_FAILED'
+        `Course cannot be published. Please resolve the following issues:\n- ${errors.join('\n- ')}`
       );
     }
   }

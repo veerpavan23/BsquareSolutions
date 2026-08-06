@@ -17,7 +17,7 @@ export class AcademyService {
   async getById(id: string) {
     const academy = await repository.findById(id);
     if (!academy) {
-      throw new BusinessRuleError('Vertical not found', 'NOT_FOUND');
+      throw new BusinessRuleError('Vertical not found');
     }
     return academy;
   }
@@ -25,7 +25,7 @@ export class AcademyService {
   async getBySlug(slug: string) {
     const academy = await repository.findBySlug(slug);
     if (!academy) {
-      throw new BusinessRuleError('Vertical not found', 'NOT_FOUND');
+      throw new BusinessRuleError('Vertical not found');
     }
     return academy;
   }
@@ -39,7 +39,7 @@ export class AcademyService {
     const slug = this.formatSlug(data.slug || data.name);
     const existing = await repository.findBySlug(slug);
     if (existing) {
-      throw new BusinessRuleError(`A Vertical with slug "${slug}" already exists.`, 'CONFLICT');
+      throw new BusinessRuleError(`A Vertical with slug "${slug}" already exists.`);
     }
 
     const academy = await repository.create({
@@ -59,7 +59,7 @@ export class AcademyService {
       openGraphImage: data.openGraphImage,
     });
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'CREATE_RECORD',
@@ -79,14 +79,14 @@ export class AcademyService {
       const slug = this.formatSlug(data.slug);
       const duplicate = await repository.findBySlug(slug);
       if (duplicate && duplicate.id !== id) {
-        throw new BusinessRuleError(`A Vertical with slug "${slug}" already exists.`, 'CONFLICT');
+        throw new BusinessRuleError(`A Vertical with slug "${slug}" already exists.`);
       }
       data.slug = slug;
     }
 
     const updated = await repository.update(id, data, data.recordVersion!);
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UPDATE_RECORD',
@@ -104,8 +104,7 @@ export class AcademyService {
     // Publishing Rules
     if (!academy.name || !academy.slug || !academy.shortDescription || !academy.thumbnail) {
       throw new BusinessRuleError(
-        'Vertical cannot be published. Missing required fields: Name, Slug, Short Description, or Thumbnail.',
-        'VALIDATION_FAILED'
+        'Vertical cannot be published. Missing required fields: Name, Slug, Short Description, or Thumbnail.'
       );
     }
 
@@ -115,7 +114,7 @@ export class AcademyService {
       recordVersion
     );
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UPDATE_RECORD',
@@ -131,11 +130,11 @@ export class AcademyService {
   async unpublish(id: string, recordVersion: number, actorId: string, actorEmail: string) {
     const updated = await repository.update(
       id,
-      { publishStatus: PublishStatus.UNPUBLISHED },
+      { publishStatus: PublishStatus.DRAFT },
       recordVersion
     );
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UPDATE_RECORD',
@@ -159,7 +158,7 @@ export class AcademyService {
     );
     await repository.softDelete(id);
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'DELETE_RECORD',
@@ -180,7 +179,7 @@ export class AcademyService {
       recordVersion
     );
 
-    await auditService.log({
+    await auditService.logEvent({
       actorUserId: actorId,
       actorEmail: actorEmail,
       action: 'UPDATE_RECORD',

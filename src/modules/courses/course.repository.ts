@@ -111,7 +111,7 @@ export class CourseRepository {
     };
   }
 
-  async create(data: Omit<Prisma.CourseCreateInput, 'category'> & { categoryId: string }) {
+  async create(data: Prisma.CourseUncheckedCreateInput) {
     return prisma.course.create({
       data,
       include: this.includeRelations,
