@@ -5,18 +5,17 @@ import { Award, Users, Building2, ThumbsUp, Briefcase, GraduationCap } from 'luc
 
 export const StatsSection: React.FC = () => {
   const stats = [
-    { label: 'Years Experience', value: '15+', icon: Award, color: 'text-blue-500' },
+    { label: 'Years Experience', value: '12+', icon: Award, color: 'text-blue-500' },
     { label: 'Students Trained', value: '5,000+', icon: Users, color: 'text-[#0086F8]' },
     { label: 'Corporate Trainings', value: '200+', icon: Building2, color: 'text-cyan-500' },
     { label: 'Student Satisfaction', value: '95%', icon: ThumbsUp, color: 'text-emerald-500' },
-    { label: 'Hiring Partners', value: '100+', icon: Briefcase, color: 'text-indigo-500' },
     { label: 'Certified Trainers', value: '100%', icon: GraduationCap, color: 'text-amber-500' },
   ];
 
   return (
     <section className="py-12 bg-[#071D59] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
           {stats.map((stat, idx) => {
             const Icon = stat.icon;
             return (
