@@ -70,6 +70,8 @@ export const BookDemoModal: React.FC = () => {
       payload.append('00Nfw00000Gnb3d', formData.preferredTime);
       payload.append('lead_source', 'Web');
       payload.append('recordType', '0125g000002LdEx');
+      payload.append('RecordType', '0125g000002LdEx');
+      payload.append('RecordTypeId', '0125g000002LdEx');
 
       await fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
         method: 'POST',
