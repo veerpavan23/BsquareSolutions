@@ -19,7 +19,7 @@ export const BookDemoModal: React.FC = () => {
     name: '',
     email: '',
     phone: '',
-    courseId: defaultCourseId,
+    courseIds: [defaultCourseId],
     preferredMode: 'Online Live',
     preferredTime: 'Morning (08:00 AM)',
     consent: true,
@@ -31,7 +31,7 @@ export const BookDemoModal: React.FC = () => {
   // Update formData if URL param changes
   useEffect(() => {
     if (isOpen) {
-      setFormData(prev => ({ ...prev, courseId: defaultCourseId }));
+      setFormData(prev => ({ ...prev, courseIds: [defaultCourseId] }));
     }
   }, [isOpen, defaultCourseId]);
 
@@ -156,8 +156,13 @@ export const BookDemoModal: React.FC = () => {
                   Select Technology / Course *
                 </label>
                 <select
-                  value={formData.courseId}
-                  onChange={(e) => setFormData({ ...formData, courseId: e.target.value })}
+                  multiple
+                  size={4}
+                  value={formData.courseIds}
+                  onChange={(e) => {
+                    const selected = Array.from(e.target.selectedOptions, option => option.value);
+                    setFormData({ ...formData, courseIds: selected });
+                  }}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0086F8]"
                 >
                   {COURSES.map((course) => (

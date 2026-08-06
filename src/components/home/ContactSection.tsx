@@ -8,7 +8,7 @@ export const ContactSection: React.FC = () => {
     name: '',
     email: '',
     phone: '',
-    technology: 'Salesforce Administrator',
+    technologies: ['Salesforce Administrator'],
     message: '',
     consent: true,
   });
@@ -133,8 +133,13 @@ export const ContactSection: React.FC = () => {
                     Interested Technology / Course
                   </label>
                   <select
-                    value={formData.technology}
-                    onChange={(e) => setFormData({ ...formData, technology: e.target.value })}
+                    multiple
+                    size={4}
+                    value={formData.technologies}
+                    onChange={(e) => {
+                      const selected = Array.from(e.target.selectedOptions, option => option.value);
+                      setFormData({ ...formData, technologies: selected });
+                    }}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0086F8] text-sm"
                   >
                     <option value="Salesforce Administrator">Salesforce Administrator</option>
