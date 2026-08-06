@@ -55,8 +55,8 @@ export function useModalNavigation() {
     const searchStr = newSearchParams.toString();
     const query = searchStr ? `?${searchStr}` : '';
     
-    // Replace state so we don't spam history with closes
-    router.replace(`${pathname}${query}`, { scroll: false });
+    // Push state to ensure URL updates reliably
+    router.push(`${pathname}${query}`, { scroll: false });
   };
 
   return { openModal, closeModal };
@@ -64,9 +64,29 @@ export function useModalNavigation() {
 
 export function useModalRoute(modalType: ModalType) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   const currentModal = searchParams.get('modal');
   const isOpen = currentModal === modalType;
-  const { openModal, closeModal } = useModalNavigation();
+  const { openModal } = useModalNavigation();
+
+  const closeModal = () => {
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.delete('modal');
+
+    // Remove all modal-specific parameters
+    const allAllowedParams = new Set(
+      Object.values(modalRegistry).flatMap((m) => m.allowedParams)
+    );
+    for (const key of Array.from(allAllowedParams)) {
+      newSearchParams.delete(key);
+    }
+
+    const searchStr = newSearchParams.toString();
+    const query = searchStr ? `?${searchStr}` : '';
+    
+    router.push(`${pathname}${query}`, { scroll: false });
+  };
 
   const getParam = (key: string) => {
     const allowedParams = modalRegistry[modalType].allowedParams;
