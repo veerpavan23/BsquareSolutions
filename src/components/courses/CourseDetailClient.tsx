@@ -39,7 +39,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
 
   const [expandedModuleIdx, setExpandedModuleIdx] = useState<number | null>(0);
   const [enquiryStatus, setEnquiryStatus] = useState<'idle' | 'loading' | 'success'>('idle');
-  const [enquiryForm, setEnquiryForm] = useState({ name: '', email: '', phone: '', mode: 'Online Live' });
+  const [enquiryForm, setEnquiryForm] = useState({ name: '', email: '', phone: '', mode: 'Online Live', includeInternship: false });
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -311,6 +311,19 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
                       <option value="Classroom">Classroom Training</option>
                       <option value="Hybrid">Hybrid</option>
                     </select>
+                  </div>
+
+                  <div className="flex items-start gap-2 pt-1 pb-1">
+                    <input
+                      type="checkbox"
+                      id="internship-course-enquiry"
+                      checked={enquiryForm.includeInternship}
+                      onChange={(e) => setEnquiryForm({ ...enquiryForm, includeInternship: e.target.checked })}
+                      className="mt-0.5 rounded border-slate-300 text-[#0086F8] focus:ring-[#0086F8] dark:border-slate-600 dark:bg-slate-700"
+                    />
+                    <label htmlFor="internship-course-enquiry" className="text-xs text-slate-600 dark:text-slate-300">
+                      <span className="font-bold text-slate-900 dark:text-white">Include Internship Program</span> <span className="text-[#0086F8] font-semibold">(Additional Cost Applies)</span>
+                    </label>
                   </div>
 
                   <button

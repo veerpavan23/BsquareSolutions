@@ -11,6 +11,7 @@ export const ContactSection: React.FC = () => {
     technologies: ['Salesforce Administrator'],
     message: '',
     consent: true,
+    includeInternship: false,
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -149,6 +150,22 @@ export const ContactSection: React.FC = () => {
                     <option value="Data Analytics Bootcamp">Business & Data Analytics</option>
                     <option value="Corporate Training">Corporate Workforce Training</option>
                   </select>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 rounded-xl bg-blue-50/50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50">
+                  <div className="flex items-center h-5 mt-0.5">
+                    <input
+                      id="internship-contact"
+                      type="checkbox"
+                      checked={formData.includeInternship}
+                      onChange={(e) => setFormData({ ...formData, includeInternship: e.target.checked })}
+                      className="w-4 h-4 rounded border-slate-300 text-[#0086F8] focus:ring-[#0086F8] dark:border-slate-600 dark:bg-slate-700"
+                    />
+                  </div>
+                  <label htmlFor="internship-contact" className="text-xs text-slate-700 dark:text-slate-300 leading-tight cursor-pointer">
+                    <span className="font-bold block text-slate-900 dark:text-white mb-0.5">Include Internship Program</span>
+                    Get hands-on experience with real-world projects. <span className="font-semibold text-[#0086F8]">(Additional Cost Applies)</span>
+                  </label>
                 </div>
 
                 <div suppressHydrationWarning>
