@@ -1,5 +1,7 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
@@ -7,7 +9,8 @@ import { COURSES } from '@/data/courses';
 import { Search, X, BookOpen, ChevronRight, Award, Clock } from 'lucide-react';
 
 export const SearchModal: React.FC = () => {
-  const { isSearchOpen, setIsSearchOpen, openDemoModalWithCourse } = useApp();
+  const { isSearchOpen, setIsSearchOpen } = useApp();
+  const { openModal } = useModalNavigation();
   const [query, setQuery] = useState('');
 
   if (!isSearchOpen) return null;
@@ -86,7 +89,7 @@ export const SearchModal: React.FC = () => {
                   <button
                     onClick={() => {
                       setIsSearchOpen(false);
-                      openDemoModalWithCourse(course.id);
+                      openModal('book-demo', { course: course.id });
                     }}
                     className="px-3 py-1.5 text-xs font-semibold text-[#0086F8] bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 rounded-lg transition-colors"
                   >

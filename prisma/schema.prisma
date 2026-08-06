@@ -15,6 +15,12 @@ enum AdminUserStatus {
   INACTIVE
 }
 
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
 enum CourseStatus {
   DRAFT
   IN_REVIEW
@@ -54,6 +60,47 @@ enum BatchStatus {
   POSTPONED
   CANCELLED
   ARCHIVED
+}
+
+enum BatchSessionType {
+  FREE_DEMO
+  WEEKDAY_BATCH
+  WEEKEND_BATCH
+  CORPORATE_BATCH
+}
+
+enum LeadType {
+  CONTACT
+  COURSE_ENQUIRY
+  DEMO_BOOKING
+  CALLBACK
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  INTERESTED
+  DEMO_SCHEDULED
+  CONVERTED
+  LOST
+  DUPLICATE
+}
+
+enum LeadSource {
+  WEBSITE
+  COURSE_PAGE
+  DEMO_PAGE
+  CONTACT_PAGE
+  WHATSAPP
+  REFERRAL
+  OTHER
+}
+
+enum LeadPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
 }
 
 enum TrainingMode {
@@ -295,6 +342,7 @@ model AdminUser {
   courseVersions        CourseVersion[]         @relation("VersionChangedBy")
   approvedTimeOffs      TrainerTimeOff[]        @relation("TimeOffApprovedBy")
   receivedNotifications NotificationRecipient[] @relation("NotificationRecipientAdmin")
+  assignedLeads         Lead[]                  @relation("LeadAssignedTo")
 }
 
 model AdminSession {
@@ -401,11 +449,29 @@ model Classroom {
 }
 
 model Academy {
-  id         String           @id @default(cuid())
-  name       String           @unique
-  slug       String           @unique
+  id               String           @id @default(cuid())
+  name             String           @unique
+  slug             String           @unique
+  shortDescription String?
+  fullDescription  String?
+  icon             String?
+  thumbnail        String?
+  banner           String?
+  displayOrder     Int              @default(0)
+  isFeatured       Boolean          @default(false)
+  isActive         Boolean          @default(true)
+  publishStatus    PublishStatus    @default(DRAFT)
+  metaTitle        String?
+  metaDescription  String?
+  openGraphImage   String?
+  recordVersion    Int              @default(1)
+  deletedAt        DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @default(now()) @updatedAt
+
   courses    Course[]
   categories CourseCategory[]
+  leads      Lead[]
 }
 
 model CourseCategory {
@@ -480,6 +546,7 @@ model Course {
   batches            Batch[]
   trainerAssignments CourseTrainer[]
   versions           CourseVersion[]
+  leads              Lead[]
 
   @@index([academyId])
   @@index([categoryId])
@@ -626,10 +693,13 @@ model Batch {
   registrationCloseAt DateTime?
   timezone            String       @default("Asia/Kolkata")
   mode                TrainingMode
-  capacity            Int          @default(30)
-  seatsFilled         Int          @default(0)
-  status              BatchStatus  @default(PLANNED)
-  recordVersion       Int          @default(1)
+  capacity            Int              @default(30)
+  seatsFilled         Int              @default(0)
+  status              BatchStatus      @default(PLANNED)
+  sessionType         BatchSessionType @default(WEEKDAY_BATCH)
+  publicVisibility    Boolean          @default(true)
+  description         String?
+  recordVersion       Int              @default(1)
 
   createdById String?
   createdBy   AdminUser? @relation("BatchCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
@@ -644,6 +714,7 @@ model Batch {
   trainers   BatchTrainer[]
   changeLogs BatchChangeLog[]
   waitlist   BatchWaitlistEntry[]
+  leads      Lead[]
 
   @@index([courseId])
   @@index([status])
@@ -1008,3 +1079,74 @@ model ContentPageSection {
   payload      String? // SQLite stores JSON as string
   displayOrder Int              @default(0)
 }
+
+model Lead {
+  id                  String       @id @default(cuid())
+  name                String
+  email               String?
+  phone               String?
+  city                String?
+  company             String?
+  currentRole         String?
+  interestedVertical  String?
+  interestedCourse    String?
+  demoSession         String?
+  preferredMode       String?
+  message             String?
+  
+  leadType            LeadType     @default(CONTACT)
+  source              LeadSource   @default(WEBSITE)
+  status              LeadStatus   @default(NEW)
+  priority            LeadPriority @default(NORMAL)
+  
+  academyId           String?
+  academy             Academy?     @relation(fields: [academyId], references: [id], onDelete: SetNull)
+  courseId            String?
+  course              Course?      @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  batchId             String?
+  batch               Batch?       @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  
+  assignedToId        String?
+  assignedTo          AdminUser?   @relation("LeadAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+  
+  nextFollowUpDate    DateTime?
+  internalNotes       String?
+  consent             Boolean      @default(false)
+  
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  deletedAt           DateTime?
+}
+
+model NavigationMenu {
+  id          String           @id @default(cuid())
+  code        String           @unique
+  name        String
+  description String?
+  isActive    Boolean          @default(true)
+  items       NavigationItem[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model NavigationItem {
+  id           String          @id @default(cuid())
+  menuId       String
+  menu         NavigationMenu  @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parentId     String?
+  parent       NavigationItem? @relation("NavigationChildren", fields: [parentId], references: [id], onDelete: SetNull)
+  children     NavigationItem[] @relation("NavigationChildren")
+  
+  label        String
+  url          String
+  displayOrder Int             @default(0)
+  isActive     Boolean         @default(true)
+  openInNewTab Boolean         @default(false)
+  
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  @@index([menuId])
+  @@index([parentId])
+}
+

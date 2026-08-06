@@ -1,11 +1,14 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React from 'react';
 import { useApp } from '@/context/AppContext';
 import { Sparkles, Play, Calendar, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export const DemoClassCTA: React.FC = () => {
-  const { openDemoModalWithCourse } = useApp();
+  
+  const { openModal } = useModalNavigation();
 
   return (
     <section className="py-20 bg-slate-50 dark:bg-[#0B0F19] relative">
@@ -39,7 +42,7 @@ export const DemoClassCTA: React.FC = () => {
 
           <div className="pt-2">
             <button
-              onClick={() => openDemoModalWithCourse()}
+              onClick={() => openModal('book-demo')}
               className="px-8 py-4 bg-gradient-to-r from-[#071D59] via-[#0086F8] to-[#00C2FF] hover:opacity-95 text-white font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-xl shadow-blue-500/25 transition-all inline-flex items-center gap-2"
             >
               <Sparkles className="w-5 h-5 text-cyan-300" /> Reserve My Free Demo Class Seat Now

@@ -2,19 +2,13 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Course } from '@/data/courses';
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
 
 interface AppContextType {
   isSearchOpen: boolean;
   setIsSearchOpen: (open: boolean) => void;
-  isDemoModalOpen: boolean;
-  setIsDemoModalOpen: (open: boolean) => void;
-  selectedCourseForDemo: string | null;
-  setSelectedCourseForDemo: (courseId: string | null) => void;
   openDemoModalWithCourse: (courseId?: string) => void;
   
-  isBrochureModalOpen: boolean;
-  setIsBrochureModalOpen: (open: boolean) => void;
-  selectedCourseForBrochure: string | null;
   openBrochureModalWithCourse: (courseId: string) => void;
   
   isCompareOpen: boolean;
@@ -34,13 +28,9 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { openModal } = useModalNavigation();
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-  const [selectedCourseForDemo, setSelectedCourseForDemo] = useState<string | null>(null);
-  
-  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
-  const [selectedCourseForBrochure, setSelectedCourseForBrochure] = useState<string | null>(null);
-  
   const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [comparedCourseIds, setComparedCourseIds] = useState<string[]>([]);
   
@@ -102,13 +92,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const openDemoModalWithCourse = (courseId?: string) => {
-    if (courseId) setSelectedCourseForDemo(courseId);
-    setIsDemoModalOpen(true);
+    openModal('book-demo', courseId ? { course: courseId } : undefined);
   };
 
   const openBrochureModalWithCourse = (courseId: string) => {
-    setSelectedCourseForBrochure(courseId);
-    setIsBrochureModalOpen(true);
+    openModal('brochure', { course: courseId });
   };
 
   const isInWishlist = (courseId: string) => wishlistCourseIds.includes(courseId);
@@ -119,14 +107,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       value={{
         isSearchOpen,
         setIsSearchOpen,
-        isDemoModalOpen,
-        setIsDemoModalOpen,
-        selectedCourseForDemo,
-        setSelectedCourseForDemo,
         openDemoModalWithCourse,
-        isBrochureModalOpen,
-        setIsBrochureModalOpen,
-        selectedCourseForBrochure,
         openBrochureModalWithCourse,
         isCompareOpen,
         setIsCompareOpen,

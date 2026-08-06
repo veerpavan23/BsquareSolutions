@@ -1,5 +1,7 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React from 'react';
 import Link from 'next/link';
 import { UPCOMING_BATCHES } from '@/data/batches';
@@ -7,7 +9,8 @@ import { useApp } from '@/context/AppContext';
 import { Calendar, Clock, Monitor, UserCheck, Users, Play, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export const UpcomingBatchesSection: React.FC = () => {
-  const { openDemoModalWithCourse } = useApp();
+  
+  const { openModal } = useModalNavigation();
 
   return (
     <section id="upcoming-batches" className="py-20 bg-white dark:bg-[#0F172A]">
@@ -84,7 +87,7 @@ export const UpcomingBatchesSection: React.FC = () => {
 
                 <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
                   <button
-                    onClick={() => openDemoModalWithCourse(batch.courseId)}
+                    onClick={() => openModal('book-demo', { course: batch.courseId })}
                     className="w-full py-2.5 px-4 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5"
                   >
                     <Play className="w-3.5 h-3.5 fill-white" /> Reserve Demo Seat

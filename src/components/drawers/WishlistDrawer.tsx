@@ -1,5 +1,7 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React from 'react';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
@@ -7,7 +9,8 @@ import { COURSES } from '@/data/courses';
 import { X, Heart, Trash2, ArrowRight } from 'lucide-react';
 
 export const WishlistDrawer: React.FC = () => {
-  const { isWishlistOpen, setIsWishlistOpen, wishlistCourseIds, toggleWishlistCourse, openDemoModalWithCourse } = useApp();
+  const { isWishlistOpen, setIsWishlistOpen, wishlistCourseIds, toggleWishlistCourse } = useApp();
+  const { openModal } = useModalNavigation();
 
   if (!isWishlistOpen) return null;
 
@@ -59,7 +62,7 @@ export const WishlistDrawer: React.FC = () => {
                       <button
                         onClick={() => {
                           setIsWishlistOpen(false);
-                          openDemoModalWithCourse(course.id);
+                          openModal('book-demo', { course: course.id });
                         }}
                         className="px-3 py-1 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold text-xs rounded-lg transition-colors"
                       >

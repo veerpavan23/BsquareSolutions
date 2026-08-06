@@ -5,16 +5,21 @@ import { useApp } from '@/context/AppContext';
 import { COURSES } from '@/data/courses';
 import { X, Download, CheckCircle2, FileText, Loader2 } from 'lucide-react';
 
+import { useModalRoute } from '@/lib/modal-routing/modal-hooks';
+
 export const BrochureModal: React.FC = () => {
-  const { isBrochureModalOpen, setIsBrochureModalOpen, selectedCourseForBrochure } = useApp();
+  const { isOpen, closeModal, getParam } = useModalRoute('brochure');
+  const courseParam = getParam('course');
   
-  const selectedCourse = COURSES.find((c) => c.id === selectedCourseForBrochure) || COURSES[0];
+  // Validate courseParam exists in COURSES, else fallback
+  const validCourse = COURSES.find(c => c.slug === courseParam || c.id === courseParam);
+  const selectedCourse = validCourse || COURSES[0];
 
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
-  if (!isBrochureModalOpen) return null;
+  if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +32,7 @@ export const BrochureModal: React.FC = () => {
   };
 
   const handleClose = () => {
-    setIsBrochureModalOpen(false);
+    closeModal();
     setStatus('idle');
   };
 

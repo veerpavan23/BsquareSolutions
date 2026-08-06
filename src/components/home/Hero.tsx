@@ -1,12 +1,15 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React from 'react';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
 import { Sparkles, Play, Calendar, ShieldCheck, Award, ArrowRight, Code2, LineChart, Cloud } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const { openDemoModalWithCourse } = useApp();
+  
+  const { openModal } = useModalNavigation();
 
   return (
     <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B0F19] dark:via-[#0F172A] dark:to-[#0B0F19]">
@@ -46,7 +49,7 @@ export const Hero: React.FC = () => {
 
               {/* Secondary CTA */}
               <button
-                onClick={() => openDemoModalWithCourse()}
+                onClick={() => openModal('book-demo')}
                 className="w-full sm:w-auto px-7 py-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-[#0086F8] text-slate-900 dark:text-white font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 text-xs uppercase tracking-wider whitespace-nowrap"
               >
                 <Play className="w-4 h-4 text-[#0086F8] fill-[#0086F8]" /> Book a Free Demo

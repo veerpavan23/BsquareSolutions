@@ -1,5 +1,7 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { COURSES, Course } from '@/data/courses';
@@ -25,14 +27,11 @@ export const FeaturedCourses: React.FC = () => {
     setMounted(true);
   }, []);
 
-  const {
-    openDemoModalWithCourse,
-    openBrochureModalWithCourse,
-    toggleWishlistCourse,
+  const { toggleWishlistCourse,
     isInWishlist,
     toggleCompareCourse,
-    isInCompare,
-  } = useApp();
+    isInCompare } = useApp();
+  const { openModal } = useModalNavigation();
 
   const tabs = [
     { id: 'all', label: 'All Popular Courses' },
@@ -166,13 +165,13 @@ export const FeaturedCourses: React.FC = () => {
                 <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
                   <div className="grid grid-cols-2 gap-2">
                     <button
-                      onClick={() => openDemoModalWithCourse(course.id)}
+                      onClick={() => openModal('book-demo', { course: course.id })}
                       className="py-2.5 px-3 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-1"
                     >
                       <Play className="w-3.5 h-3.5 fill-white" /> Book Demo
                     </button>
                     <button
-                      onClick={() => openBrochureModalWithCourse(course.id)}
+                      onClick={() => openModal('brochure', { course: course.id })}
                       className="py-2.5 px-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-1"
                     >
                       <Download className="w-3.5 h-3.5" /> Brochure

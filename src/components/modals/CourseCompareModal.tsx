@@ -1,5 +1,7 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React from 'react';
 import { useApp } from '@/context/AppContext';
 import { COURSES } from '@/data/courses';
@@ -7,7 +9,8 @@ import { X, Scale, Trash2, CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const CourseCompareModal: React.FC = () => {
-  const { isCompareOpen, setIsCompareOpen, comparedCourseIds, toggleCompareCourse, clearCompare, openDemoModalWithCourse } = useApp();
+  const { isCompareOpen, setIsCompareOpen, comparedCourseIds, toggleCompareCourse, clearCompare } = useApp();
+  const { openModal } = useModalNavigation();
 
   if (!isCompareOpen) return null;
 
@@ -136,7 +139,7 @@ export const CourseCompareModal: React.FC = () => {
                         <button
                           onClick={() => {
                             setIsCompareOpen(false);
-                            openDemoModalWithCourse(c.id);
+                            openModal('book-demo', { course: c.id });
                           }}
                           className="w-full py-2 px-3 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold rounded-lg text-xs transition-colors"
                         >

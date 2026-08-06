@@ -1,5 +1,7 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Course } from '@/data/courses';
@@ -33,7 +35,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
   trainer,
   relatedBatches,
 }) => {
-  const { openDemoModalWithCourse, openBrochureModalWithCourse } = useApp();
+  const { openModal } = useModalNavigation();
 
   const [expandedModuleIdx, setExpandedModuleIdx] = useState<number | null>(0);
   const [enquiryStatus, setEnquiryStatus] = useState<'idle' | 'loading' | 'success'>('idle');
@@ -87,15 +89,15 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
               </div>
 
               <div className="pt-4 flex flex-wrap gap-3">
-                <button
-                  onClick={() => openDemoModalWithCourse(course.id)}
-                  className="px-6 py-3 bg-[#0086F8] hover:bg-blue-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all shadow-lg flex items-center gap-2"
+                <button 
+                  onClick={() => openModal('book-demo', { course: course.id })}
+                  className="flex-1 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
-                  <Play className="w-4 h-4 fill-white" /> Book Free Demo
+                  <Calendar className="w-5 h-5" /> Book Free Demo
                 </button>
-                <button
-                  onClick={() => openBrochureModalWithCourse(course.id)}
-                  className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all flex items-center gap-2"
+                <button 
+                  onClick={() => openModal('brochure', { course: course.id })}
+                  className="flex-1 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
                   <Download className="w-4 h-4" /> Download Syllabus PDF
                 </button>

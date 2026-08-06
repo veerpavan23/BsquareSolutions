@@ -38,6 +38,14 @@ async function main() {
     { code: 'permission.view', description: 'View permissions' },
     { code: 'permission.assign', description: 'Assign permissions to roles' },
     
+    { code: 'academy.view', description: 'View academies' },
+    { code: 'academy.create', description: 'Create academies' },
+    { code: 'academy.edit', description: 'Edit academies' },
+    { code: 'academy.publish', description: 'Publish academies' },
+    { code: 'academy.archive', description: 'Archive academies' },
+    { code: 'academy.restore', description: 'Restore academies' },
+
+    { code: 'course.view', description: 'View courses' },
     { code: 'course.create', description: 'Create courses' },
     { code: 'course.edit', description: 'Edit courses' },
     { code: 'course.submit_review', description: 'Submit courses for review' },
@@ -71,6 +79,30 @@ async function main() {
     { code: 'data.import', description: 'Import data from external files' },
     { code: 'data.export', description: 'Export standard database records' },
     { code: 'sensitive_data.export', description: 'Export personal data and security audit logs' },
+
+    { code: 'batch.view', description: 'View batches' },
+    { code: 'batch.create', description: 'Create batches' },
+    { code: 'batch.edit', description: 'Edit batches' },
+    { code: 'batch.publish', description: 'Publish batches' },
+    { code: 'batch.reschedule', description: 'Reschedule batches' },
+    { code: 'batch.cancel', description: 'Cancel batches' },
+    { code: 'batch.archive', description: 'Archive batches' },
+
+    { code: 'lead.view', description: 'View leads' },
+    { code: 'lead.assign', description: 'Assign leads' },
+    { code: 'lead.edit', description: 'Edit leads' },
+    { code: 'lead.export', description: 'Export leads' },
+
+    { code: 'homepage.view', description: 'View homepage' },
+    { code: 'homepage.edit', description: 'Edit homepage' },
+    { code: 'homepage.preview', description: 'Preview homepage' },
+    { code: 'homepage.publish', description: 'Publish homepage' },
+
+    { code: 'navigation.view', description: 'View navigation' },
+    { code: 'navigation.edit', description: 'Edit navigation' },
+
+    { code: 'seo.view', description: 'View seo' },
+    { code: 'seo.edit', description: 'Edit seo' },
   ];
 
   console.log('Seeding permissions...');

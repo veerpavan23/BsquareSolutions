@@ -1,18 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
 import { COURSES } from '@/data/courses';
 import { X, Calendar, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
+import { useModalRoute } from '@/lib/modal-routing/modal-hooks';
+
 export const BookDemoModal: React.FC = () => {
-  const { isDemoModalOpen, setIsDemoModalOpen, selectedCourseForDemo, setSelectedCourseForDemo } = useApp();
+  const { isOpen, closeModal, getParam } = useModalRoute('book-demo');
+  const courseParam = getParam('course');
+  
+  // Validate courseParam exists in COURSES, else fallback
+  const validCourse = COURSES.find(c => c.slug === courseParam || c.id === courseParam);
+  const defaultCourseId = validCourse ? validCourse.id : COURSES[0].id;
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    courseId: selectedCourseForDemo || COURSES[0].id,
+    courseId: defaultCourseId,
     preferredMode: 'Online Live',
     preferredTime: 'Morning (08:00 AM)',
     consent: true,
@@ -21,7 +28,14 @@ export const BookDemoModal: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  if (!isDemoModalOpen) return null;
+  // Update formData if URL param changes
+  useEffect(() => {
+    if (isOpen) {
+      setFormData(prev => ({ ...prev, courseId: defaultCourseId }));
+    }
+  }, [isOpen, defaultCourseId]);
+
+  if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,9 +60,8 @@ export const BookDemoModal: React.FC = () => {
   };
 
   const handleClose = () => {
-    setIsDemoModalOpen(false);
+    closeModal();
     setStatus('idle');
-    setSelectedCourseForDemo(null);
   };
 
   return (

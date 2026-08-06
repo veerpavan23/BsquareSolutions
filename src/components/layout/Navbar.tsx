@@ -1,5 +1,7 @@
 'use client';
 
+import { useModalNavigation } from '@/lib/modal-routing/modal-hooks';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -33,8 +35,8 @@ export const Navbar: React.FC = () => {
     wishlistCourseIds,
     setIsCompareOpen,
     comparedCourseIds,
-    openDemoModalWithCourse,
-  } = useApp();
+     } = useApp();
+  const { openModal } = useModalNavigation();
 
   const isDark = mounted && theme === 'dark';
 
@@ -198,7 +200,7 @@ export const Navbar: React.FC = () => {
 
           {/* Primary CTA: Book Free Demo (ALWAYS PROMINENTLY VISIBLE) */}
           <button
-            onClick={() => openDemoModalWithCourse()}
+            onClick={() => openModal('book-demo')}
             className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 bg-[#0086F8] hover:bg-blue-600 text-white font-extrabold text-xs tracking-wider uppercase rounded-xl shadow-md transition-all whitespace-nowrap shrink-0"
           >
             <Sparkles className="w-4 h-4 text-cyan-300" /> Book Free Demo
@@ -249,7 +251,7 @@ export const Navbar: React.FC = () => {
           <button
             onClick={() => {
               setIsMobileMenuOpen(false);
-              openDemoModalWithCourse();
+              openModal('book-demo');
             }}
             className="w-full py-3 bg-[#0086F8] text-white font-bold rounded-xl text-center shadow-md uppercase tracking-wider text-xs"
           >
