@@ -240,44 +240,6 @@ export const COURSES: Course[] = [
       { question: "Why switch from Aura to LWC?", answer: "LWC runs natively in modern browsers with significantly better performance and standard web component standards." }
     ]
   },
-  {
-    id: "sf-agentforce-ai",
-    title: "Agentforce & Salesforce Einstein AI",
-    slug: "agentforce-einstein-ai",
-    categoryId: "salesforce",
-    academy: "Salesforce Academy",
-    shortDescription: "Deploy autonomous AI agents, prompt templates, and predictive analytics using Salesforce Agentforce & Einstein Studio.",
-    fullOverview: "Experience the next frontier of Salesforce innovation. Learn to build, ground, and deploy intelligent AI agents that automate customer service, sales outreach, and action flows using Agentforce and Prompt Builder.",
-    targetAudience: ["Salesforce Admins & Developers", "AI Consultants", "Solution Architects"],
-    learningObjectives: ["Create and ground Agentforce autonomous agents", "Design custom Prompt Templates in Prompt Builder", "Integrate Agentforce with Flows and Apex"],
-    prerequisites: ["Salesforce Admin or Developer experience"],
-    duration: "4 Weeks (30 Hours)",
-    trainingMode: "All Modes",
-    batchOptions: "Weekday & Weekend Batches Available",
-    level: "Advanced",
-    rating: 4.95,
-    reviewCount: 165,
-    enrolledStudents: 540,
-    certificationTarget: "Salesforce Certified AI Specialist & Agentforce Accreditation",
-    badge: "Cutting Edge AI",
-    isFeatured: true,
-    isPopular: true,
-    liveProjectsCount: 2,
-    tools: ["Agentforce Builder", "Prompt Builder", "Einstein Copilot", "Data Cloud Grounding"],
-    capstoneProject: {
-      title: "Autonomous Customer Support AI Agent",
-      description: "Build an Agentforce bot capable of autonomously answering complex order queries, updating cases, and executing refund flows."
-    },
-    curriculum: [
-      { title: "Module 1: Introduction to Salesforce AI & Trust Layer", durationHours: 6, topics: ["Einstein Architecture", "Einstein Trust Layer & Data Privacy", "Generative AI in Salesforce"] },
-      { title: "Module 2: Prompt Builder & Custom Prompt Templates", durationHours: 8, topics: ["Flex Prompts & Field Generation", "Grounding Prompts with CRM Data", "Testing & Debugging Prompts"] },
-      { title: "Module 3: Agentforce Agent Building & Action Flows", durationHours: 10, topics: ["Topics & Actions Configuration", "Connecting Agents to Flow & Apex", "Agent Reasoning & Guardrails"] },
-      { title: "Module 4: Enterprise AI Deployment & Certification", durationHours: 6, topics: ["Agentforce Analytics & Performance Monitoring", "Certification Exam Preparation"] }
-    ],
-    faqs: [
-      { question: "What is Agentforce?", answer: "Agentforce is Salesforce's revolutionary AI suite allowing organizations to build autonomous AI agents that act on CRM data." }
-    ]
-  },
 
   // ===================== POWER BI ACADEMY =====================
   {
@@ -455,90 +417,6 @@ export const COURSES: Course[] = [
     ]
   },
 
-  // ===================== AI & DATA SCIENCE =====================
-  {
-    id: "genai-engineering",
-    title: "Generative AI & LLM Engineering Masterclass",
-    slug: "generative-ai-engineering",
-    categoryId: "ai-data-science",
-    academy: "AI & Data Science Academy",
-    shortDescription: "Build production RAG pipelines, fine-tune open-source LLMs, engineer prompts, and deploy AI agents with LangChain & LlamaIndex.",
-    fullOverview: "Master practical Generative AI application engineering. Learn OpenAI APIs, Hugging Face transformers, Vector Databases (Pinecone/Chroma), Retrieval-Augmented Generation (RAG), and autonomous AI agent architectures.",
-    targetAudience: ["Python Developers", "Software Engineers", "Data Scientists", "AI Enthusiasts"],
-    learningObjectives: [
-      "Build advanced RAG systems with Vector DBs and Semantic Search",
-      "Construct multi-modal AI agents using LangChain & LangGraph",
-      "Fine-tune open-source models (Llama 3, Mistral) with PEFT/LoRA",
-      "Deploy GenAI applications using Streamlit & FastAPI"
-    ],
-    prerequisites: ["Intermediate Python programming experience"],
-    duration: "8 Weeks (50 Hours)",
-    trainingMode: "All Modes",
-    batchOptions: "Weekday & Weekend Batches Available",
-    level: "Advanced",
-    rating: 4.95,
-    reviewCount: 280,
-    enrolledStudents: 950,
-    certificationTarget: "BSquare Certified Generative AI Architect",
-    badge: "Hot Future Tech",
-    isFeatured: true,
-    isPopular: true,
-    liveProjectsCount: 3,
-    tools: ["Python", "LangChain", "LlamaIndex", "Pinecone", "Ollama", "Hugging Face"],
-    capstoneProject: {
-      title: "Enterprise Document Intelligence RAG Assistant",
-      description: "Develop a secure RAG chatbot allowing employees to query 10,000 PDF financial reports with citations and tabular extraction."
-    },
-    curriculum: [
-      { title: "Module 1: LLM Foundations & OpenAI APIs", durationHours: 10, topics: ["Tokens, Temperature & Context Windows", "OpenAI ChatCompletions API", "Function Calling & Structured Outputs"] },
-      { title: "Module 2: Vector DBs & RAG Architecture", durationHours: 15, topics: ["Embeddings & Cosine Similarity", "Pinecone & Chroma Vector DBs", "Chunking Strategies & Hybrid Search"] },
-      { title: "Module 3: LangChain & Autonomous AI Agents", durationHours: 15, topics: ["Chains, Memory & Router Chains", "LangGraph State Machines", "Tools & Agentic Workflows"] },
-      { title: "Module 4: LLM Fine-Tuning & Deployment", durationHours: 10, topics: ["QLoRA Fine-tuning", "FastAPI Service Deployment", "Streamlit UI Integration"] }
-    ],
-    faqs: [
-      { question: "Do I need GPU hardware for this course?", answer: "No, we provide access to cloud computing environments (Google Colab Pro & AWS instances) for lab exercises." }
-    ]
-  },
-
-  // ===================== CLOUD & DEVOPS =====================
-  {
-    id: "aws-architect",
-    title: "AWS Certified Solutions Architect Associate (SAA-C03)",
-    slug: "aws-solutions-architect",
-    categoryId: "cloud-devops",
-    academy: "Cloud & DevOps Academy",
-    shortDescription: "Architect resilient, high-performing, secure, and cost-optimized infrastructure on Amazon Web Services.",
-    fullOverview: "Prepare for the AWS SAA-C03 certification. Master IAM, EC2, S3, VPC networking, RDS, DynamoDB, Lambda serverless, and Auto Scaling.",
-    targetAudience: ["System Admins", "Cloud Engineers", "DevOps Engineers", "IT Managers"],
-    learningObjectives: ["Design multi-tier secure AWS architectures", "Implement high availability & disaster recovery", "Configure VPC subnets & security groups"],
-    prerequisites: ["Basic networking and OS concepts"],
-    duration: "7 Weeks (45 Hours)",
-    trainingMode: "All Modes",
-    batchOptions: "Weekday & Weekend Batches Available",
-    level: "Intermediate",
-    rating: 4.88,
-    reviewCount: 390,
-    enrolledStudents: 1560,
-    certificationTarget: "AWS Certified Solutions Architect – Associate (SAA-C03)",
-    badge: "Global Standard",
-    isFeatured: false,
-    isPopular: true,
-    liveProjectsCount: 3,
-    tools: ["AWS Management Console", "AWS CLI", "CloudFormation", "Terraform"],
-    capstoneProject: {
-      title: "High-Availability Multi-Region Web Architecture",
-      description: "Deploy an auto-scaling multi-AZ web cluster behind Application Load Balancers with RDS multi-region replication."
-    },
-    curriculum: [
-      { title: "Module 1: AWS Global Infrastructure & Security", durationHours: 10, topics: ["Regions & Availability Zones", "IAM Users, Groups & Roles", "S3 Storage Classes & Lifecycle Policies"] },
-      { title: "Module 2: Compute, Auto Scaling & Load Balancing", durationHours: 12, topics: ["EC2 Instance Types", "ALB vs NLB", "Auto Scaling Policies", "EBS & EFS Storage"] },
-      { title: "Module 3: Virtual Private Cloud (VPC) Networking", durationHours: 13, topics: ["Public & Private Subnets", "Internet Gateways & NAT Gateways", "Security Groups vs NACLs", "VPC Peering & Transit Gateway"] },
-      { title: "Module 4: Databases, Serverless & Exam BootCamp", durationHours: 10, topics: ["RDS, Aurora & DynamoDB", "AWS Lambda & API Gateway", "SAA-C03 Exam Drills"] }
-    ],
-    faqs: [
-      { question: "Is hands-on AWS lab included?", answer: "Yes, every student gets guided hands-on lab exercises in AWS free tier environments." }
-    ]
-  },
 
   // ===================== AGILE & PMP =====================
   {

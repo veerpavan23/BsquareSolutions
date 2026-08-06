@@ -16,8 +16,7 @@ export const SalesforceHighlight: React.FC = () => {
     { title: "Sales Cloud & Service Cloud", desc: "Lead-to-Opportunity pipeline & Omni-channel service desks" },
     { title: "Experience & Marketing Cloud", desc: "Custom portals, customer journeys & automated email flows" },
     { title: "Salesforce CPQ", desc: "Configure, Price, Quote product bundles & pricing rules" },
-    { title: "Salesforce Data Cloud", desc: "Real-time customer data platform & unified profiles" },
-    { title: "Agentforce & Einstein AI", desc: "Autonomous AI agents, Prompt Builder & grounded CRM actions" }
+    { title: "Salesforce Data Cloud", desc: "Real-time customer data platform & unified profiles" }
   ];
 
   return (

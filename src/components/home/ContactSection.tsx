@@ -139,11 +139,9 @@ export const ContactSection: React.FC = () => {
                   >
                     <option value="Salesforce Administrator">Salesforce Administrator</option>
                     <option value="Platform Developer I">Platform Developer I (Apex & LWC)</option>
-                    <option value="Agentforce & AI">Agentforce & Salesforce Einstein AI</option>
                     <option value="Power BI Masterclass">Power BI Masterclass (PL-300)</option>
                     <option value="Tableau Masterclass">Tableau Desktop & Server</option>
                     <option value="Data Analytics Bootcamp">Business & Data Analytics</option>
-                    <option value="Generative AI & LLM">Generative AI Engineering</option>
                     <option value="Corporate Training">Corporate Workforce Training</option>
                   </select>
                 </div>

@@ -25,8 +25,8 @@ export const TRAINERS: Trainer[] = [
       "Salesforce Certified Platform Developer II",
       "Salesforce Certified AI Specialist"
     ],
-    technologies: ["Salesforce Admin", "Apex", "LWC", "Flow", "Agentforce", "Sales & Service Cloud"],
-    coursesHandled: ["Salesforce Administrator", "Platform Developer I", "Lightning Web Components", "Agentforce & Einstein AI"],
+    technologies: ["Salesforce Admin", "Apex", "LWC", "Flow", "Sales & Service Cloud"],
+    coursesHandled: ["Salesforce Administrator", "Platform Developer I", "Lightning Web Components"],
     rating: 4.95,
     studentCount: 2400,
     linkedinUrl: "https://linkedin.com",
@@ -69,22 +69,5 @@ export const TRAINERS: Trainer[] = [
     bio: "Specializes in executive dashboard design, visual data storytelling, and high-performance LOD calculations. Passionate about helping career switchers master visual analytics.",
     avatarText: "TB"
   },
-  {
-    id: "trainer-ai-lead",
-    name: "Principal AI & Data Science Consultant",
-    designation: "AI & GenAI Solutions Architect",
-    experienceYears: 11,
-    certifications: [
-      "AWS Certified Machine Learning – Specialty",
-      "TensorFlow Certified Developer",
-      "BSquare Senior AI Fellow"
-    ],
-    technologies: ["Python", "Generative AI", "LangChain", "LLMs", "RAG", "Machine Learning", "PyTorch"],
-    coursesHandled: ["Generative AI & LLM Engineering", "Python for Data Science"],
-    rating: 4.96,
-    studentCount: 1100,
-    linkedinUrl: "https://linkedin.com",
-    bio: "Expert in building production LLM applications, RAG pipelines, and deep neural networks. Conducts hands-on code-along bootcamps focusing on real production deployments.",
-    avatarText: "AI"
-  }
+
 ];

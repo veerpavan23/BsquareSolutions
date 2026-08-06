@@ -19,7 +19,7 @@ export const CATEGORIES: Category[] = [
     iconName: "Cloud",
     courseCount: 16,
     highlightText: "Most Popular in India",
-    popularTopics: ["Admin ADM-201", "Platform App Builder", "Platform Dev I & II", "LWC", "Agentforce", "Data Cloud"],
+    popularTopics: ["Admin ADM-201", "Platform App Builder", "Platform Dev I & II", "LWC", "Data Cloud"],
     gradient: "from-blue-600 to-indigo-700",
   },
   {
@@ -55,28 +55,7 @@ export const CATEGORIES: Category[] = [
     popularTopics: ["Advanced SQL", "Business Intelligence", "Dashboard Design", "Data Wrangling", "Stat Analysis"],
     gradient: "from-emerald-500 to-teal-700",
   },
-  {
-    id: "ai-data-science",
-    name: "AI & Data Science",
-    slug: "ai-data-science-training",
-    description: "Master Python, Machine Learning, Deep Learning, Generative AI, LLMs, and autonomous agent engineering.",
-    iconName: "Brain",
-    courseCount: 12,
-    highlightText: "Future Ready",
-    popularTopics: ["Python", "Machine Learning", "Generative AI", "LangChain & RAG", "Neural Networks"],
-    gradient: "from-purple-600 to-indigo-800",
-  },
-  {
-    id: "cloud-devops",
-    name: "Cloud & DevOps",
-    slug: "cloud-devops-training",
-    description: "Architect secure cloud infrastructure on AWS & Azure, and automate deployment pipelines with Docker & Kubernetes.",
-    iconName: "Server",
-    courseCount: 8,
-    highlightText: "Global Certification",
-    popularTopics: ["AWS Solutions Architect", "Azure Administrator", "Docker & Kubernetes", "CI/CD Pipelines", "Git & GitHub"],
-    gradient: "from-sky-500 to-blue-700",
-  },
+
   {
     id: "agile-pm",
     name: "Project Management & Agile",

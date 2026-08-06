@@ -20,7 +20,6 @@ export const ACADEMIES_NAV: NavCategory[] = [
       { title: "Lightning Web Components (LWC)", href: "/courses/lightning-web-components", description: "Modern JavaScript UI framework for Salesforce" },
       { title: "Salesforce Flow Automation", href: "/courses/salesforce-flow", description: "Advanced declarative automation & orchestration" },
       { title: "Salesforce Integration Architecture", href: "/courses/salesforce-integration", description: "REST/SOAP APIs, OAuth & middleware" },
-      { title: "Agentforce & Einstein AI", href: "/courses/agentforce-einstein-ai", badge: "HOT", description: "Autonomous AI agents & predictive analytics on Salesforce" },
       { title: "Salesforce Data Cloud", href: "/courses/salesforce-data-cloud", badge: "NEW", description: "Real-time customer data platform & unified profiles" },
     ],
   },
@@ -35,20 +34,8 @@ export const ACADEMIES_NAV: NavCategory[] = [
     ],
   },
   {
-    title: "AI & Emerging Technologies",
+    title: "Project Management & Agile",
     items: [
-      { title: "Python for Data Science & AI", href: "/courses/python-data-science", description: "NumPy, Pandas, Matplotlib & Exploratory Analytics" },
-      { title: "Applied Machine Learning", href: "/courses/applied-machine-learning", description: "Scikit-Learn, Predictive Models & Model Deployment" },
-      { title: "Generative AI & LLM Engineering", href: "/courses/generative-ai-engineering", badge: "NEW", description: "LangChain, RAG, Prompt Engineering & Fine-tuning" },
-      { title: "SQL & Enterprise Data Engineering", href: "/courses/sql-data-engineering", description: "PostgreSQL, Snowflake, Stored Procedures & ETL" },
-    ],
-  },
-  {
-    title: "Cloud & Agile Leadership",
-    items: [
-      { title: "AWS Solutions Architect", href: "/courses/aws-solutions-architect", description: "Cloud infrastructure, S3, EC2, Lambda & Security" },
-      { title: "Microsoft Azure Administrator", href: "/courses/azure-administrator", description: "AZ-104 certification prep & cloud governance" },
-      { title: "DevOps & CI/CD Pipelines", href: "/courses/devops-docker-kubernetes", description: "Git, GitHub, Docker, Kubernetes & Jenkins" },
       { title: "PMP & Agile Scrum Master", href: "/courses/pmp-scrum-master", description: "PMI PMP certification & Agile delivery leadership" },
     ],
   },
@@ -61,7 +48,6 @@ export const MAIN_NAV_LINKS = [
   { title: "Power BI", href: "/power-bi-training" },
   { title: "Tableau", href: "/tableau-training" },
   { title: "Analytics", href: "/data-analytics-training" },
-  { title: "AI & Data Science", href: "/ai-data-science-training" },
   { title: "Learning Paths", href: "/learning-paths" },
   { title: "Corporate Training", href: "/corporate-training" },
   { title: "Trainers", href: "/trainers" },

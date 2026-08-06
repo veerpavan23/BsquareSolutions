@@ -12,7 +12,7 @@ export interface LearningStep {
 export interface CareerPath {
   id: string;
   title: string;
-  category: "salesforce" | "analytics" | "ai-data" | "tableau" | "power-bi";
+  category: "salesforce" | "analytics" | "tableau" | "power-bi";
   description: string;
   targetRole: string;
   steps: LearningStep[];
@@ -175,45 +175,7 @@ export const LEARNING_PATHS: CareerPath[] = [
       }
     ]
   },
-  {
-    id: "sf-ai-path",
-    title: "Salesforce AI and Agentforce Path",
-    category: "salesforce",
-    description: "Pioneer autonomous AI agents, prompt engineering, and predictive CRM intelligence on Salesforce.",
-    targetRole: "Salesforce AI / Agentforce Specialist Architect",
-    steps: [
-      {
-        stepNumber: 1,
-        phaseTitle: "Step 1: Salesforce Core & Flow Automation",
-        skillToLearn: "Salesforce Admin, Data Model & Flow Orchestration",
-        recommendedCourse: "Salesforce Administrator (ADM-201)",
-        courseSlug: "salesforce-administrator",
-        suggestedCertification: "Salesforce Certified Administrator",
-        practicalProject: "Automated Record Trigger Workflows",
-        potentialJobRole: "Salesforce Specialist"
-      },
-      {
-        stepNumber: 2,
-        phaseTitle: "Step 2: Data Cloud & Vector Grounding",
-        skillToLearn: "Data Cloud Identity Resolution, Vector Indexing & Real-time Ingestion",
-        recommendedCourse: "Salesforce Data Cloud",
-        courseSlug: "salesforce-data-cloud",
-        suggestedCertification: "Salesforce Certified Data Cloud Consultant",
-        practicalProject: "Data Cloud Grounding Pipeline for Customer Insights",
-        potentialJobRole: "Salesforce Data & AI Specialist"
-      },
-      {
-        stepNumber: 3,
-        phaseTitle: "Step 3: Agentforce & Prompt Engineering",
-        skillToLearn: "Agentforce Topics/Actions, Prompt Builder, Einstein Trust Layer & Guardrails",
-        recommendedCourse: "Agentforce & Salesforce Einstein AI",
-        courseSlug: "agentforce-einstein-ai",
-        suggestedCertification: "Salesforce Certified AI Specialist",
-        practicalProject: "Autonomous Customer Support AI Agent with Action Flows",
-        potentialJobRole: "Salesforce Agentforce AI Architect"
-      }
-    ]
-  },
+
   {
     id: "pbi-dev-path",
     title: "Power BI Developer Path",
@@ -370,82 +332,4 @@ export const LEARNING_PATHS: CareerPath[] = [
       }
     ]
   },
-  {
-    id: "data-scientist-path",
-    title: "Data Scientist Path",
-    category: "ai-data",
-    description: "Master statistical modeling, supervised/unsupervised machine learning, deep learning, and Python AI frameworks.",
-    targetRole: "Senior Data Scientist",
-    steps: [
-      {
-        stepNumber: 1,
-        phaseTitle: "Step 1: Python, Statistics & EDA",
-        skillToLearn: "Python Data Science Stack (Pandas, NumPy, Scipy), Descriptive & Inferential Statistics",
-        recommendedCourse: "Python for Data Science & AI",
-        courseSlug: "python-data-science",
-        suggestedCertification: "BSquare Applied Statistics Certificate",
-        practicalProject: "Statistical Hypothesis Testing & EDA on Medical Datasets",
-        potentialJobRole: "Junior Data Scientist"
-      },
-      {
-        stepNumber: 2,
-        phaseTitle: "Step 2: Machine Learning Algorithms",
-        skillToLearn: "Scikit-Learn, Regression, Classification, Clustering, Random Forests & XGBoost",
-        recommendedCourse: "Applied Machine Learning",
-        courseSlug: "applied-machine-learning",
-        suggestedCertification: "AWS Certified Data Analytics / ML Specialist",
-        practicalProject: "Credit Card Fraud Detection Model with XGBoost",
-        potentialJobRole: "Data Scientist"
-      },
-      {
-        stepNumber: 3,
-        phaseTitle: "Step 3: Deep Learning & Model Deployment",
-        skillToLearn: "Neural Networks, PyTorch, Model Evaluation, Docker & ML API Deployment",
-        recommendedCourse: "Applied Machine Learning",
-        courseSlug: "applied-machine-learning",
-        suggestedCertification: "TensorFlow Certified Developer",
-        practicalProject: "Computer Vision Quality Inspection API with PyTorch & FastAPI",
-        potentialJobRole: "Senior Data Scientist / AI Engineer"
-      }
-    ]
-  },
-  {
-    id: "genai-prof-path",
-    title: "Generative AI Professional Path",
-    category: "ai-data",
-    description: "Build cutting-edge RAG engines, custom AI agents, prompt templates, and LLM fine-tuning solutions.",
-    targetRole: "Generative AI Architect / LLM Engineer",
-    steps: [
-      {
-        stepNumber: 1,
-        phaseTitle: "Step 1: Advanced Python & API Engineering",
-        skillToLearn: "Python AsyncIO, FastAPI, Pydantic & OpenAI API Integration",
-        recommendedCourse: "Python for Data Science & AI",
-        courseSlug: "python-data-science",
-        suggestedCertification: "BSquare Python API Engineer",
-        practicalProject: "Async Web Scraping & Structured JSON LLM Extraction API",
-        potentialJobRole: "AI Application Developer"
-      },
-      {
-        stepNumber: 2,
-        phaseTitle: "Step 2: RAG Systems & Vector Databases",
-        skillToLearn: "Embeddings, Pinecone/Chroma, Semantic Search & Retrieval-Augmented Generation",
-        recommendedCourse: "Generative AI & LLM Engineering Masterclass",
-        courseSlug: "generative-ai-engineering",
-        suggestedCertification: "BSquare Certified GenAI Developer",
-        practicalProject: "Enterprise Multi-Document PDF RAG Chatbot",
-        potentialJobRole: "Generative AI Engineer"
-      },
-      {
-        stepNumber: 3,
-        phaseTitle: "Step 3: Autonomous AI Agents & Fine-Tuning",
-        skillToLearn: "LangChain, LangGraph State Machines, Tool Usage & QLoRA Model Fine-Tuning",
-        recommendedCourse: "Generative AI & LLM Engineering Masterclass",
-        courseSlug: "generative-ai-engineering",
-        suggestedCertification: "BSquare Certified Generative AI Architect",
-        practicalProject: "Autonomous Multi-Agent Task Orchestrator with Streamlit",
-        potentialJobRole: "Senior Generative AI Architect"
-      }
-    ]
-  }
 ];

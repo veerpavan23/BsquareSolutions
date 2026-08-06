@@ -84,20 +84,7 @@ export const UPCOMING_BATCHES: UpcomingBatch[] = [
     status: "Filling Fast",
     courseSlug: "lightning-web-components"
   },
-  {
-    id: "batch-genai-01",
-    courseId: "genai-engineering",
-    courseName: "Generative AI & LLM Engineering Masterclass",
-    startDate: "2026-08-15",
-    dayType: "Weekend Batch (Sat-Sun)",
-    timing: "10:00 AM - 01:00 PM IST",
-    mode: "Online Live",
-    trainerName: "Principal AI & Data Science Consultant",
-    availableSeats: 7,
-    totalSeats: 20,
-    status: "New Batch",
-    courseSlug: "generative-ai-engineering"
-  },
+
   {
     id: "batch-data-analytics-01",
     courseId: "data-analytics-bootcamp",

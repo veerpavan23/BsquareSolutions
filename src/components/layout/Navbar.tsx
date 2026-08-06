@@ -237,7 +237,6 @@ export const Navbar: React.FC = () => {
             <Link href="/power-bi-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Power BI Academy</Link>
             <Link href="/tableau-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Tableau Academy</Link>
             <Link href="/data-analytics-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Analytics Academy</Link>
-            <Link href="/ai-data-science-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">AI & Data Science Academy</Link>
             <Link href="/learning-paths" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Learning Paths</Link>
             <Link href="/corporate-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Corporate Training</Link>
             <Link href="/trainers" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Trainers</Link>

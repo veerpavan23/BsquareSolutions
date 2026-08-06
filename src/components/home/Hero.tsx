@@ -136,8 +136,8 @@ export const Hero: React.FC = () => {
                     <code>
 {`public with sharing class ClaimService {
   public static void processClaims(List<Claim__c> claims) {
-    // Agentforce Autonomous AI Validation
-    AgentforceAI.evaluateRules(claims);
+    // Execute custom validation logic
+    ClaimValidator.evaluateRules(claims);
   }
 }`}
                     </code>

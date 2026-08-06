@@ -39,7 +39,6 @@ export const FeaturedCourses: React.FC = () => {
     { id: 'power-bi', label: 'Power BI Academy' },
     { id: 'tableau', label: 'Tableau Academy' },
     { id: 'data-analytics', label: 'Analytics Academy' },
-    { id: 'ai-data-science', label: 'AI & Data Science' },
   ];
 
   const filteredCourses = activeTab === 'all'
