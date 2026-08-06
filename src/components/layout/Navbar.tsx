@@ -70,7 +70,15 @@ export const Navbar: React.FC = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
         {/* Left: Official BSquare Logo (Bold & HD) */}
-        <Link href="/" className="flex items-center shrink-0">
+        <Link 
+          href="/" 
+          className="flex items-center shrink-0"
+          onClick={() => {
+            if (pathname === '/') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+        >
           <BSquareLogo variant="full" size="md" isDark={isDark} />
         </Link>
 

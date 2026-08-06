@@ -9,6 +9,7 @@ import { PublicModalHost } from '@/components/modals/PublicModalHost';
 import { CourseCompareModal } from '@/components/modals/CourseCompareModal';
 import { WishlistDrawer } from '@/components/drawers/WishlistDrawer';
 import { WhatsAppWidget } from '@/components/layout/WhatsAppWidget';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
 
 export function PublicLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -29,6 +30,7 @@ export function PublicLayoutWrapper({ children }: { children: React.ReactNode })
         <PublicModalHost />
       </Suspense>
       <WishlistDrawer />
+      <ScrollToTop />
       <WhatsAppWidget />
     </>
   );
