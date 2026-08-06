@@ -1,4 +1,4 @@
-import { PrismaClient, PublishStatus } from '@prisma/client';
+import { PrismaClient, PublishStatus, CourseLevel } from '@prisma/client';
 import { COURSES } from '../src/data/courses';
 
 const prisma = new PrismaClient();
@@ -69,7 +69,7 @@ async function main() {
         academyId: academy.id,
         shortDescription: course.shortDescription,
         description: course.fullOverview,
-        level: course.level.split(' ')[0].toUpperCase(), 
+        level: course.level.split(' ')[0].toUpperCase() as CourseLevel, 
         durationValue: parseInt(course.duration.split(' ')[0]) || 4,
         durationUnit: course.duration.includes('Week') ? 'WEEKS' : 'HOURS',
         status: 'PUBLISHED',
