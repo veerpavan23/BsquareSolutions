@@ -37,7 +37,7 @@ export const ScrollToTop: React.FC = () => {
     <button
       onClick={scrollToTop}
       title="Scroll to Top"
-      className="fixed bottom-6 left-6 z-45 w-12 h-12 bg-white dark:bg-[#131B2E] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-full flex items-center justify-center shadow-xl border border-slate-200 dark:border-slate-700 transition-all hover:-translate-y-1 animate-fade-in"
+      className="fixed bottom-24 right-6 z-40 w-12 h-12 bg-[#0086F8] hover:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all hover:-translate-y-1 animate-fade-in"
     >
       <ArrowUp className="w-6 h-6" />
     </button>
