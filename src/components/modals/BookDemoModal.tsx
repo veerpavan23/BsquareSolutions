@@ -14,13 +14,13 @@ export const BookDemoModal: React.FC = () => {
   
   // Validate courseParam exists in COURSES, else fallback
   const validCourse = COURSES.find(c => c.slug === courseParam || c.id === courseParam);
-  const defaultCourseId = validCourse ? validCourse.id : COURSES[0].id;
+  const defaultCourseTitle = validCourse ? validCourse.title : COURSES[0].title;
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    courseIds: [defaultCourseId],
+    courseIds: [defaultCourseTitle],
     preferredMode: 'Online Live',
     preferredTime: 'Morning',
     consent: true,
@@ -32,9 +32,9 @@ export const BookDemoModal: React.FC = () => {
   // Update formData if URL param changes
   useEffect(() => {
     if (isOpen) {
-      setFormData(prev => ({ ...prev, courseIds: [defaultCourseId] }));
+      setFormData(prev => ({ ...prev, courseIds: [defaultCourseTitle] }));
     }
-  }, [isOpen, defaultCourseId]);
+  }, [isOpen, defaultCourseTitle]);
 
   if (!isOpen) return null;
 
@@ -62,8 +62,18 @@ export const BookDemoModal: React.FC = () => {
       payload.append('email', formData.email);
       payload.append('phone', formData.phone);
       
+      const mapCourseToSalesforce = (courseName: string) => {
+        if (courseName.includes('Salesforce Administrator')) return courseName.includes('Internship') ? 'Salesforce Administrator + Internship' : 'Salesforce Administrator';
+        if (courseName.includes('Platform Developer I')) return courseName.includes('Internship') ? 'Platform Developer I + Internship' : 'Platform Developer I';
+        if (courseName.includes('Power BI')) return courseName.includes('Internship') ? 'Power BI Masterclass + Internship' : 'Power BI Masterclass';
+        if (courseName.includes('Tableau')) return courseName.includes('Internship') ? 'Tableau Masterclass + Internship' : 'Tableau Masterclass';
+        if (courseName.includes('Data Analytics')) return courseName.includes('Internship') ? 'Data Analytics Bootcamp + Internship' : 'Data Analytics Bootcamp';
+        // Fallbacks that might require SF picklist updates if users select them
+        return courseName;
+      };
+
       formData.courseIds.forEach(course => {
-        payload.append('00Nfw00000Gnah3', course);
+        payload.append('00Nfw00000Gnah3', mapCourseToSalesforce(course));
       });
       
       payload.append('00Nfw00000GnXZW', formData.preferredMode);
