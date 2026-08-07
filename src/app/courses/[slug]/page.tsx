@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     twitter: {
       title: course.title,
-      description: course.description,
+      description: course.shortDescription,
     },
     alternates: {
       canonical: `https://bsquare.co.in/courses/${course.slug}`,
