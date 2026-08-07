@@ -4,8 +4,10 @@ import { DemoClassCTA } from '@/components/home/DemoClassCTA';
 import { FAQSection } from '@/components/home/FAQSection';
 
 export const metadata = {
-  title: 'Power BI & Microsoft Fabric Training | PL-300 Certification | BSquare',
-  description: 'Master Power Query, DAX formulas, Star Schema modeling, and Microsoft Fabric with hands-on live projects and PL-300 exam preparation.',
+  title: 'Power BI Training in Hyderabad | DAX, Fabric & Real-time Projects',
+  description: 'Master Data Analytics with the best Power BI training in Hyderabad. Learn DAX, Microsoft Fabric, Data Modeling and build enterprise dashboards. 100% placement support.',
+  keywords: ['Power BI Training Hyderabad', 'DAX Training', 'Data Analytics Course', 'Microsoft Fabric Course', 'Power BI Ameerpet'],
+  alternates: { canonical: 'https://bsquare.co.in/power-bi-training' },
 };
 
 export default function PowerBITrainingPage() {

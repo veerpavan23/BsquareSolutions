@@ -4,8 +4,10 @@ import { FAQSection } from '@/components/home/FAQSection';
 import { DemoClassCTA } from '@/components/home/DemoClassCTA';
 
 export const metadata = {
-  title: 'Salesforce Training Institute | ADM-201, Developer, LWC & Agentforce | BSquare',
-  description: 'Master Salesforce Administration, Platform Developer, Lightning Web Components, Data Cloud and Agentforce AI at BSquare. Live projects & certification prep.',
+  title: 'Salesforce Training in Hyderabad | Admin, Developer, LWC Courses',
+  description: 'Join the best Salesforce training institute in Hyderabad. 100% practical classes for Salesforce Admin, Developer, LWC & Integration. Global certification & placement support.',
+  keywords: ['Salesforce Training Hyderabad', 'Salesforce Admin Course', 'Salesforce Developer Training', 'LWC Training', 'Salesforce Certification Ameerpet'],
+  alternates: { canonical: 'https://bsquare.co.in/salesforce-training' },
 };
 
 export default function SalesforceTrainingPage() {

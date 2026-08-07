@@ -19,7 +19,32 @@ import { ContactSection } from '@/components/home/ContactSection';
 
 export default function HomePage() {
   return (
-    <>
+    <main className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#0B0F19] transition-colors duration-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'EducationalOrganization',
+            name: 'BSquare Solutions',
+            url: 'https://bsquare.co.in',
+            logo: 'https://bsquare.co.in/logo.png',
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+91-90301-14064',
+              contactType: 'Admissions Support',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '402, Green House Building, Beside Aditya Trade Center',
+              addressLocality: 'Ameerpet, Hyderabad',
+              postalCode: '500038',
+              addressCountry: 'IN',
+            },
+          }),
+        }}
+      />
+
       {/* 2. Hero Section */}
       <Hero />
 

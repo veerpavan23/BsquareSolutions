@@ -11,6 +11,33 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const course = COURSES.find((c) => c.slug === slug);
+  
+  if (!course) {
+    return { title: 'Course Not Found' };
+  }
+
+  return {
+    title: course.title,
+    description: course.description,
+    openGraph: {
+      title: course.title,
+      description: course.description,
+      type: 'website',
+      url: `https://bsquare.co.in/courses/${course.slug}`,
+    },
+    twitter: {
+      title: course.title,
+      description: course.description,
+    },
+    alternates: {
+      canonical: `https://bsquare.co.in/courses/${course.slug}`,
+    }
+  };
+}
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -27,5 +54,25 @@ export default async function CourseDetailPage({ params }: PageProps) {
   const trainer = TRAINERS[0];
   const relatedBatches = UPCOMING_BATCHES.slice(0, 3);
 
-  return <CourseDetailClient course={course as any} trainer={trainer} relatedBatches={relatedBatches} />;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: course.title,
+    description: course.description,
+    provider: {
+      '@type': 'EducationalOrganization',
+      name: 'BSquare Solutions',
+      sameAs: 'https://bsquare.co.in',
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <CourseDetailClient course={course as any} trainer={trainer} relatedBatches={relatedBatches} />
+    </>
+  );
 }
