@@ -21,10 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return {
     title: course.title,
-    description: course.description,
+    description: course.shortDescription,
     openGraph: {
       title: course.title,
-      description: course.description,
+      description: course.shortDescription,
       type: 'website',
       url: `https://bsquare.co.in/courses/${course.slug}`,
     },
@@ -58,7 +58,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
     '@context': 'https://schema.org',
     '@type': 'Course',
     name: course.title,
-    description: course.description,
+    description: course.shortDescription,
     provider: {
       '@type': 'EducationalOrganization',
       name: 'BSquare Solutions',
