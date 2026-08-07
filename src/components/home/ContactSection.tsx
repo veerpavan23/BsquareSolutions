@@ -140,7 +140,7 @@ export const ContactSection: React.FC = () => {
                     <input
                       type="tel"
                       required
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 90301 14064"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       data-lpignore="true"
@@ -259,7 +259,7 @@ export const ContactSection: React.FC = () => {
 
               <div className="space-y-3 text-xs">
                 <a
-                  href="https://wa.me/919876543210"
+                  href="https://wa.me/919030114064"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/50 flex items-center justify-between hover:bg-emerald-100 transition-colors"
@@ -278,7 +278,7 @@ export const ContactSection: React.FC = () => {
                   <Phone className="w-5 h-5 text-[#0086F8]" />
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white">Phone Support</div>
-                    <div className="text-slate-600 dark:text-slate-400 font-semibold">+91 98765 43210</div>
+                    <div className="text-slate-600 dark:text-slate-400 font-semibold">+91 90301 14064</div>
                   </div>
                 </div>
 
@@ -286,7 +286,7 @@ export const ContactSection: React.FC = () => {
                   <Mail className="w-5 h-5 text-cyan-500" />
                   <div>
                     <div className="font-bold text-slate-900 dark:text-white">Email Address</div>
-                    <div className="text-slate-600 dark:text-slate-400 font-semibold">info@bsquare.co.in</div>
+                    <div className="text-slate-600 dark:text-slate-400 font-semibold">trainings@schrandersolutions.com</div>
                   </div>
                 </div>
               </div>
@@ -298,18 +298,18 @@ export const ContactSection: React.FC = () => {
                 <MapPin className="w-5 h-5 text-[#0086F8]" /> Campus & Training Location
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400">
-                BSquare Technology Campus, Corporate Tower, Technology Hub, India
+                402, Green House Building, Beside Aditya Trade Center, Ameerpet, Hyderabad - 500038.
               </p>
               
               {/* Visual Map Frame Mock */}
-              <div className="w-full h-40 rounded-2xl bg-slate-900/80 border border-slate-800 relative flex items-center justify-center text-slate-400 text-xs overflow-hidden">
+              <a href="https://maps.app.goo.gl/UpZEvWWn6CyJvQrg6" target="_blank" rel="noopener noreferrer" className="w-full h-40 rounded-2xl bg-slate-900/80 border border-slate-800 relative flex items-center justify-center text-slate-400 text-xs overflow-hidden group transition-all hover:ring-2 hover:ring-[#0086F8]">
                 <div className="absolute inset-0 bg-hero-glow opacity-40 pointer-events-none" />
-                <div className="text-center space-y-1 relative z-10">
+                <div className="text-center space-y-1 relative z-10 group-hover:scale-105 transition-transform duration-300">
                   <MapPin className="w-8 h-8 text-[#0086F8] mx-auto animate-bounce" />
-                  <span className="font-bold text-white block">BSquare Solutions Campus</span>
-                  <span className="text-[10px] text-slate-400">Interactive Location Map</span>
+                  <span className="font-bold text-white block">View on Google Maps</span>
+                  <span className="text-[10px] text-slate-400">Ameerpet, Hyderabad</span>
                 </div>
-              </div>
+              </a>
             </div>
 
           </div>

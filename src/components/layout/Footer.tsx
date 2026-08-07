@@ -141,18 +141,18 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 text-xs text-slate-300">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span>BSquare Technology Campus, Corporate Tower, Technology Hub, India</span>
+                <span>402, Green House Building, Beside Aditya Trade Center, Ameerpet, Hyderabad - 500038.</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href="tel:+919876543210" className="hover:underline font-semibold text-white">
-                  +91 98765 43210
+                <a href="tel:+919030114064" className="hover:underline font-semibold text-white">
+                  +91 90301 14064
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href="mailto:info@bsquare.co.in" className="hover:underline">
-                  info@bsquare.co.in
+                <a href="mailto:trainings@schrandersolutions.com" className="hover:underline">
+                  trainings@schrandersolutions.com
                 </a>
               </li>
             </ul>

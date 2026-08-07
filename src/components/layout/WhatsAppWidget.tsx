@@ -5,10 +5,12 @@ import { X, Send, Sparkles } from 'lucide-react';
 
 interface WhatsAppWidgetProps {
   phoneNumber?: string; // Format: country code + number (e.g., 919876543210)
+  message?: string;
 }
 
 export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
-  phoneNumber = '919876543210', // Default BSquare Business Number
+  phoneNumber = '919030114064', // Default BSquare Business Number
+  message = 'Hi! I would like to know more about the training programs.',
 }) => {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
