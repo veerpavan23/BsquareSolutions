@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     title: 'BSquare Solutions & Services',
     description: 'Transform your career with 100% practical IT training in Salesforce, Power BI, and AI.',
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   alternates: {
     canonical: 'https://bsquare.co.in',
   }
