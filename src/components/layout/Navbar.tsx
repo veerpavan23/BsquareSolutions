@@ -28,6 +28,18 @@ export const Navbar: React.FC = () => {
   const { theme, toggleTheme, mounted } = useCustomTheme();
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const megaMenuTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const handleMegaMenuEnter = () => {
+    if (megaMenuTimeoutRef.current) clearTimeout(megaMenuTimeoutRef.current);
+    setIsMegaMenuOpen(true);
+  };
+
+  const handleMegaMenuLeave = () => {
+    megaMenuTimeoutRef.current = setTimeout(() => {
+      setIsMegaMenuOpen(false);
+    }, 200); // 200ms grace period to allow cursor to travel
+  };
 
   const {
     setIsSearchOpen,
@@ -98,8 +110,8 @@ export const Navbar: React.FC = () => {
           {/* Academies Mega Menu Trigger */}
           <div
             className="relative"
-            onMouseEnter={() => setIsMegaMenuOpen(true)}
-            onMouseLeave={() => setIsMegaMenuOpen(false)}
+            onMouseEnter={handleMegaMenuEnter}
+            onMouseLeave={handleMegaMenuLeave}
           >
             <button
               onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
@@ -202,8 +214,8 @@ export const Navbar: React.FC = () => {
       {isMegaMenuOpen && (
         <div
           className="absolute top-full left-0 w-full z-50"
-          onMouseEnter={() => setIsMegaMenuOpen(true)}
-          onMouseLeave={() => setIsMegaMenuOpen(false)}
+          onMouseEnter={handleMegaMenuEnter}
+          onMouseLeave={handleMegaMenuLeave}
         >
           <MegaMenu onClose={() => setIsMegaMenuOpen(false)} />
         </div>
