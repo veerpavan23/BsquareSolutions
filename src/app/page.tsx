@@ -98,6 +98,6 @@ export default function HomePage() {
 
       {/* 19. Contact Section */}
       <ContactSection />
-    </>
+    </main>
   );
 }
