@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BSquare Salesforce Training Flyer</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <!-- Use a more robust screenshot library: dom-to-image -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
@@ -43,7 +44,6 @@
       padding: 2rem;
     }
 
-    /* Floating control bar */
     .controls {
       position: fixed;
       top: 20px;
@@ -55,7 +55,6 @@
       border: 1px solid rgba(0, 194, 255, 0.3);
       backdrop-filter: blur(10px);
     }
-    
     .controls button {
       background: #0086F8;
       color: white;
@@ -68,12 +67,8 @@
     }
     .controls button:hover { background: #006dd1; }
 
-    /* Container wrapping the flyer, scaling it down visually on small screens */
-    .flyer-wrapper {
-      transform-origin: top center;
-      margin-top: 60px;
-    }
-
+    .flyer-wrapper { transform-origin: top center; margin-top: 60px; }
+    
     .flyer-container {
       width: 1080px;
       height: 1350px;
@@ -83,59 +78,65 @@
       box-shadow: 0 25px 50px -12px rgba(0, 194, 255, 0.25);
     }
 
-    /* Decorative Glowing Orbs */
     .glow-orb-1 {
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 600px;
-      height: 600px;
+      position: absolute; top: -100px; right: -100px; width: 600px; height: 600px;
       background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+      border-radius: 50%; pointer-events: none;
     }
-
     .glow-orb-2 {
-      position: absolute;
-      bottom: -200px;
-      left: -200px;
-      width: 800px;
-      height: 800px;
+      position: absolute; bottom: -200px; left: -200px; width: 800px; height: 800px;
       background: radial-gradient(circle, rgba(0, 134, 248, 0.2) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+      border-radius: 50%; pointer-events: none;
     }
 
-    /* Glassmorphism Panels */
     .glass-panel {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 194, 255, 0.2);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 194, 255, 0.2); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
-    
     .glass-panel-highlight {
       background: linear-gradient(135deg, rgba(0, 134, 248, 0.2) 0%, rgba(15, 23, 42, 0.4) 100%);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 194, 255, 0.4);
-      border-left: 4px solid #00C2FF;
+      backdrop-filter: blur(16px); border: 1px solid rgba(0, 194, 255, 0.4); border-left: 4px solid #00C2FF;
     }
-
     .text-gradient {
       background: linear-gradient(to right, #ffffff, #00C2FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    /* Circuit Lines Overlay */
+    /* CSS Laptop Graphic */
+    .laptop-graphic {
+      width: 100%; max-width: 450px; position: relative; margin: 0 auto; perspective: 1000px;
+      transform: translateY(-20px);
+    }
+    .laptop-screen {
+      background: #0B1120; border: 4px solid #334155; border-radius: 16px 16px 0 0;
+      aspect-ratio: 16/10; padding: 12px; position: relative; overflow: hidden;
+      box-shadow: 0 0 50px rgba(0, 194, 255, 0.2);
+    }
+    .laptop-dashboard {
+      width: 100%; height: 100%; background: #0F172A; border-radius: 8px; border: 1px solid #1E293B;
+      display: grid; grid-template-rows: 20px 1fr; gap: 10px; padding: 10px;
+    }
+    .dashboard-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1E293B; padding-bottom: 5px; }
+    .dashboard-circles { display: flex; gap: 4px; }
+    .dashboard-circle { width: 8px; height: 8px; border-radius: 50%; background: #334155; }
+    .dashboard-content { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+    .dash-box { background: #1E293B; border-radius: 4px; }
+    .dash-box.glow { box-shadow: 0 0 15px rgba(0, 194, 255, 0.4); border: 1px solid #00C2FF; }
+    .dash-bar { height: 6px; background: #00C2FF; border-radius: 3px; margin: 5px; width: 60%; }
+    
+    .laptop-base {
+      height: 15px; background: linear-gradient(to bottom, #94A3B8, #475569);
+      border-radius: 0 0 16px 16px; width: 110%; margin-left: -5%;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5); position: relative;
+    }
+    .laptop-base::after {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 4px; background: #CBD5E1; border-radius: 0 0 4px 4px;
+    }
+
     .circuit-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
       background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,100 L50,300 L150,400 M900,800 L900,600 L750,450' stroke='rgba(0,194,255,0.2)' stroke-width='2' fill='none' /%3E%3Ccircle cx='50' cy='300' r='4' fill='%2300C2FF' /%3E%3Ccircle cx='150' cy='400' r='4' fill='%2300C2FF' /%3E%3Ccircle cx='900' cy='600' r='4' fill='%2300C2FF' /%3E%3Ccircle cx='750' cy='450' r='4' fill='%2300C2FF' /%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
     }
   </style>
 </head>
@@ -146,20 +147,17 @@
   </div>
 
   <div class="flyer-wrapper" id="wrapper">
-    <!-- Wrap flyer in a div that can be easily screenshot or printed -->
-    <div class="flyer-container bg-grid-pattern flex flex-col justify-between p-16" id="flyer">
+    <div class="flyer-container bg-grid-pattern flex flex-col p-16" id="flyer" style="background-color: #071D59;">
       
       <div class="glow-orb-1"></div>
       <div class="glow-orb-2"></div>
       <div class="circuit-overlay"></div>
 
-      <!-- TOP SECTION: HEADER -->
-      <header class="flex justify-between items-start z-10 w-full">
-        <!-- BSquare Logo -->
+      <!-- HEADER -->
+      <header class="flex justify-between items-start z-10 w-full mb-8">
         <div>
           <img src="bsquare-logo-white.svg" alt="BSquare" class="h-24">
         </div>
-        <!-- Salesforce Partner / Training Badge -->
         <div class="flex items-center gap-4 glass-panel px-6 py-3 rounded-2xl">
           <svg viewBox="0 0 24 24" class="w-10 h-10 text-[#00a1e0]" fill="currentColor">
             <path d="M16.92 7.72c-.22-2.91-2.65-5.22-5.63-5.22-2.3 0-4.31 1.39-5.21 3.42C5.66 5.76 5.25 5.7 4.81 5.7 2.15 5.7 0 7.85 0 10.51c0 2.58 2.05 4.7 4.61 4.78h13.92c2.93-.05 5.28-2.45 5.28-5.38.01-2.88-2.26-5.24-5.12-5.33l-1.77-.86z"/>
@@ -171,98 +169,115 @@
         </div>
       </header>
 
-      <!-- MIDDLE SECTION: MAIN CONTENT -->
-      <main class="z-10 flex flex-col mt-12 gap-12 w-full">
-        
-        <!-- Hero Title -->
-        <div class="max-w-4xl">
-          <h2 class="font-space font-bold text-3xl text-brand-cyan tracking-widest uppercase mb-4">Elevate Your Career Today</h2>
-          <h1 class="font-space font-black text-7xl leading-tight mb-8">
+      <!-- TOP 2-COLUMN SECTION: Text & Laptop Graphic -->
+      <div class="z-10 grid grid-cols-2 gap-8 items-center w-full mb-12">
+        <!-- Hero Text -->
+        <div class="max-w-xl">
+          <h2 class="font-space font-bold text-2xl text-brand-cyan tracking-widest uppercase mb-4">Elevate Your Career Today</h2>
+          <h1 class="font-space font-black text-6xl leading-tight mb-6">
             SALESFORCE <br/>
-            <span class="text-gradient">ADMIN & DEVELOPER</span><br/>
-            TRAINING <span class="text-2xl ml-4 font-inter text-slate-400 font-medium">ONLINE / OFFLINE</span>
+            <span class="text-gradient">ADMIN & DEV</span><br/>
+            TRAINING 
           </h1>
+          <span class="inline-block glass-panel px-4 py-2 rounded-full font-inter text-brand-cyan font-bold tracking-widest uppercase text-sm mb-6 border border-brand-cyan/50">Online & Offline Batches</span>
           
-          <p class="font-inter text-2xl text-slate-300 leading-relaxed max-w-3xl glass-panel p-8 rounded-3xl border-l-4 border-l-brand-cyan">
-            Enroll in our comprehensive Salesforce Admin and Developer training starting <strong class="text-white">August 19th, 2026</strong>. Gain hands-on experience, real-time projects, and guidance for certifications to boost your career.
+          <p class="font-inter text-xl text-slate-300 leading-relaxed border-l-4 border-brand-cyan pl-6 bg-gradient-to-r from-brand-cyan/10 to-transparent py-4">
+            Enroll in our comprehensive Salesforce training starting <strong class="text-white text-2xl ml-2">Aug 19th, 2026</strong>. Gain hands-on experience, real-time projects, and certification guidance.
           </p>
         </div>
 
-        <!-- Two Column Layout for Eligibility & Graphic -->
-        <div class="grid grid-cols-2 gap-12 items-center mt-8">
+        <!-- Futuristic Laptop Graphic -->
+        <div class="laptop-graphic">
+          <div class="laptop-screen">
+            <div class="laptop-dashboard">
+              <div class="dashboard-header">
+                <div class="dashboard-circles">
+                  <div class="dashboard-circle" style="background:#EF4444"></div>
+                  <div class="dashboard-circle" style="background:#EAB308"></div>
+                  <div class="dashboard-circle" style="background:#22C55E"></div>
+                </div>
+                <div class="w-24 h-2 bg-slate-700 rounded-full"></div>
+              </div>
+              <div class="dashboard-content">
+                <div class="flex flex-col gap-2">
+                  <div class="dash-box h-12 glow flex items-center justify-center"><svg class="w-6 h-6 text-brand-cyan" fill="currentColor" viewBox="0 0 24 24"><path d="M16.92 7.72c-.22-2.91-2.65-5.22-5.63-5.22-2.3 0-4.31 1.39-5.21 3.42C5.66 5.76 5.25 5.7 4.81 5.7 2.15 5.7 0 7.85 0 10.51c0 2.58 2.05 4.7 4.61 4.78h13.92c2.93-.05 5.28-2.45 5.28-5.38.01-2.88-2.26-5.24-5.12-5.33l-1.77-.86z"/></svg></div>
+                  <div class="dash-box h-16"></div>
+                  <div class="dash-box h-24"></div>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <div class="dash-box h-24 p-2">
+                    <div class="w-full h-full border-b border-l border-slate-600 relative">
+                       <!-- SVG Chart -->
+                       <svg viewBox="0 0 100 50" class="absolute inset-0 w-full h-full overflow-visible">
+                         <path d="M0 40 Q20 20 40 30 T80 10 T100 0" fill="none" stroke="#00C2FF" stroke-width="2" />
+                         <path d="M0 50 L0 40 Q20 20 40 30 T80 10 T100 0 L100 50 Z" fill="url(#gradient)" opacity="0.3" />
+                         <defs>
+                           <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00C2FF"/><stop offset="100%" stop-color="transparent"/></linearGradient>
+                         </defs>
+                       </svg>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 h-full">
+                    <div class="dash-box flex-1"><div class="dash-bar" style="width: 80%"></div><div class="dash-bar" style="width: 40%"></div></div>
+                    <div class="dash-box flex-1"><div class="dash-bar" style="width: 60%"></div><div class="dash-bar" style="width: 90%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="laptop-base"></div>
+        </div>
+      </div>
+
+      <!-- BOTTOM 2-COLUMN SECTION: Eligibility & QR -->
+      <div class="z-10 grid grid-cols-2 gap-12 items-stretch w-full mb-auto">
+        <!-- Eligibility Card -->
+        <div class="glass-panel-highlight p-8 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 opacity-10">
+            <svg viewBox="0 0 24 24" class="w-64 h-64 text-white" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-space font-bold text-3xl mb-6 text-white flex items-center gap-4">
+            <span class="w-10 h-10 rounded-full bg-brand-cyan flex items-center justify-center text-brand-navy">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </span>
+            Eligibility Criteria
+          </h3>
+          <ul class="font-inter text-xl text-slate-200 space-y-4">
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> Career Break Professionals</li>
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> Career Switchers</li>
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> Any Graduates</li>
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> 3rd & Final Year Students</li>
+          </ul>
+        </div>
+
+        <!-- QR Code Panel -->
+        <div class="flex flex-col items-center justify-center text-center p-8 glass-panel rounded-3xl relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/20 to-transparent"></div>
           
-          <!-- Eligibility Card -->
-          <div class="glass-panel-highlight p-10 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 opacity-10">
-              <svg viewBox="0 0 24 24" class="w-64 h-64 text-white" fill="currentColor">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            
-            <h3 class="font-space font-bold text-4xl mb-8 text-white flex items-center gap-4">
-              <span class="w-12 h-12 rounded-full bg-brand-cyan flex items-center justify-center text-brand-navy">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </span>
-              Eligibility Criteria
-            </h3>
-            <ul class="font-inter text-2xl text-slate-200 space-y-6">
-              <li class="flex items-start gap-4">
-                <span class="text-brand-cyan mt-1">▹</span> Career Break Professionals
-              </li>
-              <li class="flex items-start gap-4">
-                <span class="text-brand-cyan mt-1">▹</span> Career Switchers
-              </li>
-              <li class="flex items-start gap-4">
-                <span class="text-brand-cyan mt-1">▹</span> Any Graduates
-              </li>
-              <li class="flex items-start gap-4">
-                <span class="text-brand-cyan mt-1">▹</span> 3rd & Final Year Students
-              </li>
-            </ul>
+          <h3 class="font-space font-bold text-3xl uppercase tracking-widest text-white mb-6 z-10 text-shadow">Scan to Register</h3>
+          
+          <div class="p-3 bg-white rounded-3xl shadow-[0_0_50px_rgba(0,194,255,0.6)] z-10 transition-transform hover:scale-105 duration-300">
+             <img src="qr-code.png" alt="Register QR Code" class="w-48 h-48 rounded-xl object-contain">
           </div>
-
-          <!-- QR Code & Call to Action -->
-          <div class="flex flex-col items-center justify-center text-center p-8 gap-8">
-            <h3 class="font-space font-bold text-3xl uppercase tracking-widest text-brand-cyan">Scan to Register</h3>
-            <!-- QR Code -->
-            <div class="p-4 bg-white rounded-3xl shadow-[0_0_50px_rgba(0,194,255,0.4)]">
-               <img src="qr-code.png" alt="Register QR Code" class="w-56 h-56 rounded-xl object-contain border-4 border-slate-100">
-            </div>
-
-            <p class="font-inter text-xl text-slate-300 font-medium">
-              Join us for an exciting training program designed for extreme career growth and development!
-            </p>
-          </div>
-
-        </div>
-      </main>
-
-      <!-- BOTTOM SECTION: FOOTER & CONTACT -->
-      <footer class="z-10 w-full mt-auto pt-8 border-t border-brand-cyan/20 grid grid-cols-3 items-end">
-        
-        <!-- Contact Info -->
-        <div class="col-span-2 flex flex-col gap-3 font-inter text-xl text-slate-300">
-          <div class="flex items-center gap-4">
-            <span class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-cyan">✉</span>
-            <p>hr@bsquare.co.in</p>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-cyan">🌐</span>
-            <p>www.bsquare.co.in</p>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-cyan">📞</span>
-            <p>+91 8374693904</p>
+          <div class="mt-8 z-10">
+            <button class="bg-gradient-to-r from-[#00C2FF] to-[#0086F8] text-white font-space font-bold text-xl px-10 py-3 rounded-full shadow-lg uppercase tracking-widest border border-white/30">
+              Enroll Now
+            </button>
           </div>
         </div>
+      </div>
 
-        <!-- Secondary Logo -->
+      <!-- FOOTER -->
+      <footer class="z-10 w-full mt-10 pt-6 border-t border-brand-cyan/20 grid grid-cols-3 items-end">
+        <div class="col-span-2 flex flex-col gap-2 font-inter text-lg text-slate-300">
+          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">✉</span><p>hr@bsquare.co.in</p></div>
+          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">🌐</span><p>www.bsquare.co.in</p></div>
+          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">📞</span><p>+91 8374693904</p></div>
+        </div>
         <div class="col-span-1 flex justify-end">
            <div class="text-right">
-             <img src="bsquare-logo-blue.svg" alt="BSquare" class="h-16 opacity-80 mix-blend-screen">
-             <p class="font-space text-sm tracking-widest text-slate-500 mt-2 uppercase">Your Gateway to Tech</p>
+             <img src="bsquare-logo-blue.svg" alt="BSquare" class="h-12 opacity-80 mix-blend-screen">
+             <p class="font-space text-xs tracking-widest text-slate-500 mt-1 uppercase">Your Gateway to Tech</p>
            </div>
         </div>
       </footer>
@@ -270,39 +285,44 @@
   </div>
 
   <script>
-    // Scale flyer to fit window visually so user can see it all
     function resizeFlyer() {
       const wrapper = document.getElementById('wrapper');
       const scale = Math.min(1, (window.innerHeight - 100) / 1350);
-      wrapper.style.transform = `scale(${scale})`;
+      wrapper.style.transform = `scale(` + scale + `)`;
     }
     window.addEventListener('resize', resizeFlyer);
     resizeFlyer();
 
-    // Auto-download function using html2canvas
     function downloadFlyer() {
       const btn = document.getElementById('dl-btn');
       btn.innerText = 'Generating PNG...';
       const flyer = document.getElementById('flyer');
       
-      // Temporarily remove scaling for high-res render
       const wrapper = document.getElementById('wrapper');
       wrapper.style.transform = 'scale(1)';
 
-      html2canvas(flyer, {
-        scale: 2, // 2x resolution for super crisp export
-        useCORS: true,
-        backgroundColor: '#0B1120'
-      }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'BSquare-Salesforce-Flyer.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-        
-        btn.innerText = '⬇ Download Full Image';
-        // Restore scale
-        resizeFlyer();
-      });
+      // Switch to dom-to-image which is much more reliable with SVGs and styling
+      setTimeout(() => {
+        domtoimage.toPng(flyer, {
+          quality: 1,
+          bgcolor: '#071D59'
+        })
+        .then(function (dataUrl) {
+          const link = document.createElement('a');
+          link.download = 'BSquare-Salesforce-Flyer.png';
+          link.href = dataUrl;
+          link.click();
+          
+          btn.innerText = '⬇ Download Full Image';
+          resizeFlyer();
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+          btn.innerText = 'Error downloading';
+          alert('Could not generate image automatically. Please use a screenshot tool.');
+          resizeFlyer();
+        });
+      }, 300);
     }
   </script>
 </body>
