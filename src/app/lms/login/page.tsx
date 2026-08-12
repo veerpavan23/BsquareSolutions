@@ -26,7 +26,7 @@ export default function LMSLoginPage() {
         {/* Login Form Container */}
         <div className="glass-panel rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl bg-white dark:bg-[#131B2E]">
           
-          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-5">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-2">
                 Email Address
@@ -63,7 +63,7 @@ export default function LMSLoginPage() {
             </div>
 
             <button
-              type="submit"
+              type="button"
               className="w-full py-3 bg-[#0086F8] hover:bg-blue-600 text-white font-bold text-sm uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 mt-4"
             >
               <Lock className="w-4 h-4" /> Secure Login
