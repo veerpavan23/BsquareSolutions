@@ -39,6 +39,10 @@ export interface Course {
     description: string;
   };
   faqs: CourseFAQ[];
+  showPricePublicly?: boolean;
+  standardPrice?: number;
+  currency?: string;
+  videoUrl?: string;
 }
 
 export const COURSES: Course[] = [

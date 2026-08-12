@@ -85,13 +85,13 @@ export default function HomePage() {
       <CorporateBanner />
 
       {/* 15. Free Demo Class CTA */}
-      <DemoClassCTA />
+      {/* <DemoClassCTA /> */}
 
       {/* 16. Testimonials */}
       <TestimonialsSection />
 
       {/* 17. Free Resources Preview */}
-      <ResourcesPreview />
+      {/* <ResourcesPreview /> */}
 
       {/* 18. FAQ */}
       <FAQSection />

@@ -89,18 +89,28 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
               </div>
 
               <div className="pt-4 flex flex-wrap gap-3">
-                <button 
-                  onClick={() => openModal('book-demo', { course: course.id })}
-                  className="flex-1 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
+                <a 
+                  href="#curriculum"
+                  className="flex-1 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
                 >
-                  <Calendar className="w-5 h-5" /> Book Free Demo
-                </button>
-                <button 
-                  onClick={() => openModal('brochure', { course: course.id })}
-                  className="flex-1 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
+                  <FolderGit2 className="w-4 h-4" /> View Full Syllabus
+                </a>
+                <a 
+                  href="#enquiry"
+                  className="flex-1 bg-[#0086F8] hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
                 >
-                  <Download className="w-4 h-4" /> Download Syllabus PDF
-                </button>
+                  <Send className="w-4 h-4" /> Enquire Now
+                </a>
+                {course.videoUrl && (
+                  <a 
+                    href={course.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm"
+                  >
+                    <Play className="w-4 h-4 text-rose-400" /> Watch Overview Video
+                  </a>
+                )}
               </div>
             </div>
 
@@ -164,7 +174,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
             </div>
 
             {/* Expandable Curriculum Accordion */}
-            <div className="glass-panel rounded-3xl p-8 border border-slate-200 dark:border-slate-800 space-y-6">
+            <div id="curriculum" className="glass-panel rounded-3xl p-8 border border-slate-200 dark:border-slate-800 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-heading font-bold text-slate-900 dark:text-white">
                   Curriculum & Course Syllabus
@@ -237,18 +247,22 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
               <h3 className="font-heading font-bold text-slate-900 dark:text-white text-lg flex items-center gap-2">
                 <UserCheck className="w-5 h-5 text-[#0086F8]" /> Lead Instructor & Specialist
               </h3>
-              <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#071D59] text-white font-extrabold text-xl flex items-center justify-center shrink-0">
-                  {trainer.avatarText}
+              {trainer ? (
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-2xl bg-[#071D59] text-white font-extrabold text-xl flex items-center justify-center shrink-0">
+                    {trainer.avatarText}
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="font-heading font-bold text-slate-900 dark:text-white text-base">
+                      {trainer.name}
+                    </h4>
+                    <div className="text-xs text-[#0086F8] font-semibold">{trainer.designation}</div>
+                    <p className="text-xs text-slate-600 dark:text-slate-400">{trainer.bio}</p>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <h4 className="font-heading font-bold text-slate-900 dark:text-white text-base">
-                    {trainer.name}
-                  </h4>
-                  <div className="text-xs text-[#0086F8] font-semibold">{trainer.designation}</div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400">{trainer.bio}</p>
-                </div>
-              </div>
+              ) : (
+                <div className="text-sm text-slate-500 italic">Instructor details will be announced shortly.</div>
+              )}
             </div>
 
           </div>
@@ -257,7 +271,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
           <div className="lg:col-span-4 space-y-6">
             
             {/* Instant Enrolment Enquiry Form */}
-            <div className="glass-panel rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
+            <div id="enquiry" className="glass-panel rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
               <h3 className="font-heading font-bold text-slate-900 dark:text-white text-lg">
                 Enquire for Next Batch
               </h3>
@@ -339,6 +353,20 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
               )}
             </div>
 
+            {/* Course Fee Widget */}
+            <div className="glass-panel rounded-3xl p-6 border border-slate-200 dark:border-slate-800 space-y-2 text-center">
+              <h4 className="font-heading font-bold text-slate-900 dark:text-white text-base">
+                Course Fee
+              </h4>
+              <div className="text-lg font-extrabold text-[#0086F8]">
+                {course.showPricePublicly && course.standardPrice ? (
+                  `${course.currency} ${course.standardPrice}`
+                ) : (
+                  <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">Contact Us for Fee Details</span>
+                )}
+              </div>
+            </div>
+
             {/* Upcoming Batches Widget */}
             <div className="glass-panel rounded-3xl p-6 border border-slate-200 dark:border-slate-800 space-y-4">
               <h4 className="font-heading font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
@@ -346,7 +374,7 @@ export const CourseDetailClient: React.FC<CourseDetailClientProps> = ({
               </h4>
 
               {relatedBatches.length === 0 ? (
-                <p className="text-xs text-slate-500">Regular batches starting next week. Contact us for custom timing.</p>
+                <p className="text-xs text-slate-500 italic">Upcoming batch dates will be announced shortly.</p>
               ) : (
                 <div className="space-y-3">
                   {relatedBatches.map((b) => (

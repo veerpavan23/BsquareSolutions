@@ -71,8 +71,8 @@ export const Navbar: React.FC = () => {
               <PhoneCall className="w-3.5 h-3.5 text-[#00C2FF]" /> +91 90301 14064
             </a>
             <span className="hidden md:inline text-blue-200">|</span>
-            <Link href="/login" className="hover:underline flex items-center gap-1 text-white">
-              <User className="w-3.5 h-3.5 text-[#00C2FF]" /> Student LMS Portal
+            <Link href="/lms/login" className="hover:underline flex items-center gap-1 text-white">
+              <User className="w-3.5 h-3.5 text-[#00C2FF]" /> Student LMS Login
             </Link>
           </div>
         </div>
@@ -122,36 +122,36 @@ export const Navbar: React.FC = () => {
           </div>
 
           <Link
-            href="/learning-paths"
+            href="/courses"
             className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
-              pathname === '/learning-paths'
+              pathname === '/courses'
                 ? 'text-[#0086F8] bg-blue-50 dark:bg-blue-950/60'
                 : 'text-slate-700 hover:text-[#0086F8] dark:text-slate-200 dark:hover:text-[#0086F8]'
             }`}
           >
-            Learning Paths
+            Courses
           </Link>
 
           <Link
-            href="/corporate-training"
+            href="/internships"
             className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
-              pathname === '/corporate-training'
+              pathname === '/internships'
                 ? 'text-[#0086F8] bg-blue-50 dark:bg-blue-950/60'
                 : 'text-slate-700 hover:text-[#0086F8] dark:text-slate-200 dark:hover:text-[#0086F8]'
             }`}
           >
-            Corporate
+            Internship Programs
           </Link>
 
           <Link
-            href="/resources"
+            href="/about"
             className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
-              pathname === '/resources'
+              pathname === '/about'
                 ? 'text-[#0086F8] bg-blue-50 dark:bg-blue-950/60'
                 : 'text-slate-700 hover:text-[#0086F8] dark:text-slate-200 dark:hover:text-[#0086F8]'
             }`}
           >
-            Practice Quiz
+            About
           </Link>
 
           <Link
@@ -192,13 +192,7 @@ export const Navbar: React.FC = () => {
             )}
           </button>
 
-          {/* Primary CTA: Book Free Demo (ALWAYS PROMINENTLY VISIBLE) */}
-          <button
-            onClick={() => openModal('book-demo')}
-            className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 bg-[#0086F8] hover:bg-blue-600 text-white font-extrabold text-xs tracking-wider uppercase rounded-xl shadow-md transition-all whitespace-nowrap shrink-0"
-          >
-            <Sparkles className="w-4 h-4 text-cyan-300" /> Book Free Demo
-          </button>
+
 
           {/* Mobile Drawer Trigger */}
           <button
@@ -231,25 +225,11 @@ export const Navbar: React.FC = () => {
             <Link href="/power-bi-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Power BI Academy</Link>
             <Link href="/tableau-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Tableau Academy</Link>
             <Link href="/data-analytics-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Analytics Academy</Link>
-            <Link href="/learning-paths" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Learning Paths</Link>
-            <Link href="/corporate-training" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Corporate Training</Link>
-            <Link href="/trainers" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Trainers</Link>
-            <Link href="/success-stories" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Success Stories</Link>
-            <Link href="/resources" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Free Resources</Link>
-            <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Blog</Link>
+            <Link href="/internships" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800 text-[#0086F8] font-bold">Internship Programs</Link>
             <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">About Us</Link>
-            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="py-2">Contact</Link>
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="py-2 border-b border-slate-100 dark:border-slate-800">Contact</Link>
+            <Link href="/lms/login" onClick={() => setIsMobileMenuOpen(false)} className="py-2 text-[#0086F8]">Student LMS Login</Link>
           </div>
-
-          <button
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              openModal('book-demo');
-            }}
-            className="w-full py-3 bg-[#0086F8] text-white font-bold rounded-xl text-center shadow-md uppercase tracking-wider text-xs"
-          >
-            Book Free Demo Class
-          </button>
         </div>
       )}
     </header>

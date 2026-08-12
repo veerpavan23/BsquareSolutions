@@ -74,6 +74,7 @@ enum LeadType {
   COURSE_ENQUIRY
   DEMO_BOOKING
   CALLBACK
+  INTERNSHIP_ENQUIRY
 }
 
 enum LeadStatus {
@@ -128,6 +129,16 @@ enum AuditAction {
   UNPUBLISH_COURSE
   RESCHEDULE_BATCH
   PERMISSION_UPDATE
+  CREATE_STUDENT
+  UPDATE_STUDENT
+  SUSPEND_STUDENT
+  ASSIGN_STUDENT_COURSE
+  ENABLE_LMS_ACCESS
+  DISABLE_LMS_ACCESS
+  RESET_STUDENT_PASSWORD
+  CREATE_INTERNSHIP
+  UPDATE_INTERNSHIP
+  PUBLISH_INTERNSHIP
 }
 
 enum BranchType {
@@ -1105,6 +1116,8 @@ model Lead {
   course              Course?      @relation(fields: [courseId], references: [id], onDelete: SetNull)
   batchId             String?
   batch               Batch?       @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  internshipId        String?
+  internship          InternshipProgram? @relation(fields: [internshipId], references: [id], onDelete: SetNull)
   
   assignedToId        String?
   assignedTo          AdminUser?   @relation("LeadAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
@@ -1150,3 +1163,89 @@ model NavigationItem {
   @@index([parentId])
 }
 
+// ==========================================
+// STUDENT & LMS MANAGEMENT
+// ==========================================
+
+enum StudentStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIALLY_PAID
+  PAID
+  WAIVED
+  REFUNDED
+}
+
+model Student {
+  id               String          @id @default(cuid())
+  studentId        String          @unique
+  fullName         String
+  email            String          @unique
+  phone            String
+  loginEmail       String          @unique
+  passwordHash     String
+  status           StudentStatus   @default(ACTIVE)
+  lmsAccessEnabled Boolean         @default(false)
+  lmsAccessStart   DateTime?
+  lmsAccessEnd     DateTime?
+  paymentStatus    PaymentStatus   @default(PENDING)
+  notes            String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  courseAssignments StudentCourseAssignment[]
+}
+
+model StudentCourseAssignment {
+  studentId  String
+  courseId   String
+  batchId    String?
+  student    Student @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  course     Course  @relation(fields: [courseId], references: [id], onDelete: Restrict)
+  batch      Batch?  @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  assignedAt DateTime @default(now())
+
+  @@id([studentId, courseId])
+}
+
+// ==========================================
+// INTERNSHIP PROGRAMS
+// ==========================================
+
+model InternshipProgram {
+  id                 String          @id @default(cuid())
+  name               String
+  slug               String          @unique
+  shortDescription   String?
+  description        String
+  academyId          String?
+  academy            Academy?        @relation(fields: [academyId], references: [id], onDelete: SetNull)
+  durationValue      Int?
+  durationUnit       DurationUnit?
+  trainingModes      String?         // comma-separated TrainingMode values
+  standardFee        Decimal?
+  currency           String          @default("INR")
+  showFeePublicly    Boolean         @default(true)
+  startDate          DateTime?
+  applicationOpenAt  DateTime?
+  applicationCloseAt DateTime?
+  capacity           Int?
+  status             PublishStatus   @default(DRAFT)
+  isFeatured         Boolean         @default(false)
+  thumbnailUrl       String?
+  metaTitle          String?
+  metaDescription    String?
+  recordVersion      Int             @default(1)
+  
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  deletedAt          DateTime?
+  
+  leads              Lead[]
+}

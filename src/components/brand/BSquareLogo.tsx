@@ -144,7 +144,7 @@ export const BSquareLogo: React.FC<BSquareLogoProps> = ({
 
         {/* Tech Caret 'A' */}
         <path
-          d="M 370 76 L 388 32 L 406 76"
+          d="M 340 76 L 358 32 L 376 76"
           fill="none"
           stroke="url(#caret_a_grad_hd_new)"
           strokeWidth="9.5"
@@ -153,7 +153,7 @@ export const BSquareLogo: React.FC<BSquareLogoProps> = ({
         />
 
         {/* RE */}
-        <text x="414" y="76" fill={textColor}>
+        <text x="384" y="76" fill={textColor}>
           RE
         </text>
       </g>
