@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>BSquare Assets Exporter</title>
@@ -163,26 +163,35 @@
     async function downloadSvgAsPng(name, width) {
       return new Promise((resolve) => {
         const svgString = svgs[name];
-        const blob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
-        const url = URL.createObjectURL(blob);
+        // Use data URI instead of Blob to avoid CORS/taint on file:/// protocol
+        const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
         
         const img = new Image();
         img.onload = () => {
           const canvas = document.createElement('canvas');
-          const scale = width / img.width;
+          // Determine aspect ratio from viewBox if img.width is missing
+          const isSquare = name.includes('square');
+          const originalWidth = isSquare ? 160 : 540;
+          const originalHeight = isSquare ? 160 : 140;
+          
+          const scale = width / originalWidth;
           canvas.width = width;
-          canvas.height = img.height * scale;
+          canvas.height = originalHeight * scale;
           
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           
-          const pngUrl = canvas.toDataURL('image/png');
-          const a = document.createElement('a');
-          a.download = (width === 5000 || width === 2000) ? name + '.png' : name + '-' + width + 'px.png';
-          a.href = pngUrl;
-          a.click();
+          try {
+            const pngUrl = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.download = (width === 5000 || width === 2000) ? name + '.png' : name + '-' + width + 'px.png';
+            a.href = pngUrl;
+            a.click();
+          } catch(e) {
+            console.error('Canvas export error:', e);
+            alert('Security error: Could not export PNG. Try opening this file via a local server or Vercel domain.');
+          }
           
-          URL.revokeObjectURL(url);
           resolve();
         };
         img.src = url;
