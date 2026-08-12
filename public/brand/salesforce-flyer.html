@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSquare Salesforce Training Flyer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            space: ['Space Grotesk', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#0B1120',
+              navy: '#071D59',
+              blue: '#0086F8',
+              cyan: '#00C2FF',
+              glass: 'rgba(15, 23, 42, 0.6)'
+            }
+          },
+          backgroundImage: {
+            'grid-pattern': `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%2300C2FF' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0B1120;
+      color: white;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .flyer-container {
+      width: 1080px;
+      height: 1350px; /* Standard 4:5 Instagram Portrait / Print Flyer Ratio */
+      background: radial-gradient(circle at top right, #071D59 0%, #0B1120 50%, #020617 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 194, 255, 0.25);
+    }
+
+    /* Decorative Glowing Orbs */
+    .glow-orb-1 {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .glow-orb-2 {
+      position: absolute;
+      bottom: -200px;
+      left: -200px;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0, 134, 248, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Glassmorphism Panels */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 194, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .glass-panel-highlight {
+      background: linear-gradient(135deg, rgba(0, 134, 248, 0.2) 0%, rgba(15, 23, 42, 0.4) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 194, 255, 0.4);
+      border-left: 4px solid #00C2FF;
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #ffffff, #00C2FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .text-gradient-blue {
+      background: linear-gradient(to right, #00C2FF, #0086F8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Circuit Lines Overlay */
+    .circuit-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,100 L50,300 L150,400 M900,800 L900,600 L750,450' stroke='rgba(0,194,255,0.2)' stroke-width='2' fill='none' /%3E%3Ccircle cx='50' cy='300' r='4' fill='%2300C2FF' /%3E%3Ccircle cx='150' cy='400' r='4' fill='%2300C2FF' /%3E%3Ccircle cx='900' cy='600' r='4' fill='%2300C2FF' /%3E%3Ccircle cx='750' cy='450' r='4' fill='%2300C2FF' /%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Wrap flyer in a div that can be easily screenshot or printed -->
+  <div class="flyer-container bg-grid-pattern flex flex-col justify-between p-16" id="flyer">
+    
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+    <div class="circuit-overlay"></div>
+
+    <!-- TOP SECTION: HEADER -->
+    <header class="flex justify-between items-start z-10 w-full">
+      <!-- BSquare Logo -->
+      <div>
+        <img src="bsquare-logo-white.svg" alt="BSquare" class="h-24">
+      </div>
+      <!-- Salesforce Partner / Training Badge -->
+      <div class="flex items-center gap-4 glass-panel px-6 py-3 rounded-2xl">
+        <svg viewBox="0 0 24 24" class="w-10 h-10 text-[#00a1e0]" fill="currentColor">
+          <path d="M16.92 7.72c-.22-2.91-2.65-5.22-5.63-5.22-2.3 0-4.31 1.39-5.21 3.42C5.66 5.76 5.25 5.7 4.81 5.7 2.15 5.7 0 7.85 0 10.51c0 2.58 2.05 4.7 4.61 4.78h13.92c2.93-.05 5.28-2.45 5.28-5.38.01-2.88-2.26-5.24-5.12-5.33l-1.77-.86z"/>
+        </svg>
+        <div>
+          <p class="font-space font-bold text-sm tracking-widest text-[#00a1e0] uppercase">Authorized</p>
+          <p class="font-inter font-semibold text-lg text-white">Training Partner</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- MIDDLE SECTION: MAIN CONTENT -->
+    <main class="z-10 flex flex-col mt-12 gap-12 w-full">
+      
+      <!-- Hero Title -->
+      <div class="max-w-4xl">
+        <h2 class="font-space font-bold text-3xl text-brand-cyan tracking-widest uppercase mb-4">Elevate Your Career Today</h2>
+        <h1 class="font-space font-black text-7xl leading-tight mb-8">
+          SALESFORCE <br/>
+          <span class="text-gradient">ADMIN & DEVELOPER</span><br/>
+          TRAINING <span class="text-2xl ml-4 font-inter text-slate-400 font-medium">ONLINE / OFFLINE</span>
+        </h1>
+        
+        <p class="font-inter text-2xl text-slate-300 leading-relaxed max-w-3xl glass-panel p-8 rounded-3xl border-l-4 border-l-brand-cyan">
+          Enroll in our comprehensive Salesforce Admin and Developer training starting <strong class="text-white">August 5th, 2026</strong>. Gain hands-on experience, real-time projects, and guidance for certifications to boost your career.
+        </p>
+      </div>
+
+      <!-- Two Column Layout for Eligibility & Graphic -->
+      <div class="grid grid-cols-2 gap-12 items-center mt-8">
+        
+        <!-- Eligibility Card -->
+        <div class="glass-panel-highlight p-10 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 opacity-10">
+            <svg viewBox="0 0 24 24" class="w-64 h-64 text-white" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          
+          <h3 class="font-space font-bold text-4xl mb-8 text-white flex items-center gap-4">
+            <span class="w-12 h-12 rounded-full bg-brand-cyan flex items-center justify-center text-brand-navy">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </span>
+            Eligibility Criteria
+          </h3>
+          <ul class="font-inter text-2xl text-slate-200 space-y-6">
+            <li class="flex items-start gap-4">
+              <span class="text-brand-cyan mt-1">▹</span> Career Break Professionals
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-brand-cyan mt-1">▹</span> Career Switchers
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-brand-cyan mt-1">▹</span> Any Graduates
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="text-brand-cyan mt-1">▹</span> 3rd & Final Year Students
+            </li>
+          </ul>
+        </div>
+
+        <!-- Call to Action Graphic -->
+        <div class="flex flex-col items-center justify-center text-center p-8 gap-8">
+          
+          <!-- Cloud Tech Graphic -->
+          <div class="relative w-full aspect-square max-w-[400px] flex items-center justify-center">
+             <!-- Outer rotating ring -->
+            <div class="absolute inset-0 rounded-full border border-brand-blue/30 border-dashed animate-[spin_20s_linear_infinite]"></div>
+            <!-- Inner glowing ring -->
+            <div class="absolute inset-8 rounded-full border-2 border-brand-cyan/50 shadow-[0_0_50px_rgba(0,194,255,0.4)]"></div>
+            
+            <svg viewBox="0 0 24 24" class="w-48 h-48 text-[#00C2FF] drop-shadow-[0_0_30px_rgba(0,194,255,0.8)] z-10" fill="currentColor">
+              <path d="M16.92 7.72c-.22-2.91-2.65-5.22-5.63-5.22-2.3 0-4.31 1.39-5.21 3.42C5.66 5.76 5.25 5.7 4.81 5.7 2.15 5.7 0 7.85 0 10.51c0 2.58 2.05 4.7 4.61 4.78h13.92c2.93-.05 5.28-2.45 5.28-5.38.01-2.88-2.26-5.24-5.12-5.33l-1.77-.86z"/>
+            </svg>
+          </div>
+
+          <p class="font-inter text-xl text-slate-300 font-medium">
+            Join us for an exciting training program designed for extreme career growth and development!
+          </p>
+
+          <button class="bg-gradient-to-r from-brand-blue to-brand-cyan text-white font-space font-bold text-2xl px-12 py-5 rounded-full shadow-[0_10px_40px_rgba(0,194,255,0.4)] hover:scale-105 transition-transform uppercase tracking-widest border-2 border-white/20">
+            Enroll Now
+          </button>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- BOTTOM SECTION: FOOTER & CONTACT -->
+    <footer class="z-10 w-full mt-auto pt-8 border-t border-brand-cyan/20 grid grid-cols-3 items-end">
+      
+      <!-- Contact Info -->
+      <div class="col-span-2 flex flex-col gap-3 font-inter text-xl text-slate-300">
+        <div class="flex items-center gap-4">
+          <span class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-cyan">✉</span>
+          <p>hr@bsquare.co.in</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-cyan">🌐</span>
+          <p>www.bsquare.co.in</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-cyan">📞</span>
+          <p>+91 8374693904</p>
+        </div>
+      </div>
+
+      <!-- Secondary Logo -->
+      <div class="col-span-1 flex justify-end">
+         <div class="text-right">
+           <img src="bsquare-logo-blue.svg" alt="BSquare" class="h-16 opacity-80 mix-blend-screen">
+           <p class="font-space text-sm tracking-widest text-slate-500 mt-2 uppercase">Your Gateway to Tech</p>
+         </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
