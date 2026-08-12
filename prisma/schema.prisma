@@ -480,9 +480,10 @@ model Academy {
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @default(now()) @updatedAt
 
-  courses    Course[]
-  categories CourseCategory[]
-  leads      Lead[]
+  courses            Course[]
+  categories         CourseCategory[]
+  leads              Lead[]
+  internshipPrograms InternshipProgram[]
 }
 
 model CourseCategory {
@@ -558,6 +559,7 @@ model Course {
   trainerAssignments CourseTrainer[]
   versions           CourseVersion[]
   leads              Lead[]
+  studentAssignments StudentCourseAssignment[]
 
   @@index([academyId])
   @@index([categoryId])
@@ -724,8 +726,9 @@ model Batch {
   schedules  BatchSchedule[]
   trainers   BatchTrainer[]
   changeLogs BatchChangeLog[]
-  waitlist   BatchWaitlistEntry[]
-  leads      Lead[]
+  waitlist           BatchWaitlistEntry[]
+  leads              Lead[]
+  studentAssignments StudentCourseAssignment[]
 
   @@index([courseId])
   @@index([status])
