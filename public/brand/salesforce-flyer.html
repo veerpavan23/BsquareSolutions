@@ -142,7 +142,7 @@
 <body>
 
   <div class="controls">
-    <button onclick="downloadFlyer()" id="dl-btn">⬇ Download Full Image</button>
+    <button onclick="downloadFlyer()" id="dl-btn">&#8681; Download Full Image</button>
   </div>
 
   <div class="flyer-wrapper" id="wrapper">
@@ -242,10 +242,10 @@
             Eligibility Criteria
           </h3>
           <ul class="font-inter text-xl text-slate-200 space-y-4">
-            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> Career Break Professionals</li>
-            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> Career Switchers</li>
-            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> Any Graduates</li>
-            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">▹</span> 3rd & Final Year Students</li>
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">&#9656;</span> Career Break Professionals</li>
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">&#9656;</span> Career Switchers</li>
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">&#9656;</span> Any Graduates</li>
+            <li class="flex items-start gap-4 bg-white/5 p-3 rounded-lg"><span class="text-brand-cyan">&#9656;</span> 3rd &amp; Final Year Students</li>
           </ul>
         </div>
 
@@ -269,9 +269,9 @@
       <!-- FOOTER -->
       <footer class="z-10 w-full mt-10 pt-6 border-t border-brand-cyan/20 grid grid-cols-3 items-end">
         <div class="col-span-2 flex flex-col gap-2 font-inter text-lg text-slate-300">
-          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">✉</span><p>hr@bsquare.co.in</p></div>
-          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">🌐</span><p>www.bsquare.co.in</p></div>
-          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">📞</span><p>+91 8374693904</p></div>
+          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">&#9993;</span><p>hr@bsquare.co.in</p></div>
+          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">&#127760;</span><p>www.bsquare.co.in</p></div>
+          <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-cyan">&#128222;</span><p>+91 8374693904</p></div>
         </div>
         <div class="col-span-1 flex justify-end">
            <div class="text-right">
@@ -294,7 +294,7 @@
 
     function downloadFlyer() {
       const btn = document.getElementById('dl-btn');
-      btn.innerText = 'Generating PNG...';
+      btn.innerHTML = 'Generating PNG...';
       const flyer = document.getElementById('flyer');
       
       const wrapper = document.getElementById('wrapper');
@@ -312,12 +312,12 @@
           link.href = dataUrl;
           link.click();
           
-          btn.innerText = '⬇ Download Full Image';
+          btn.innerHTML = '&#8681; Download Full Image';
           resizeFlyer();
         })
         .catch(function (error) {
           console.error('oops, something went wrong!', error);
-          btn.innerText = 'Error downloading';
+          btn.innerHTML = 'Error downloading';
           alert('Could not generate image automatically. Please use a screenshot tool.');
           resizeFlyer();
         });
