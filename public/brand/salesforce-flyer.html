@@ -284,45 +284,8 @@
   </div>
 
   <script>
-    function resizeFlyer() {
-      const wrapper = document.getElementById('wrapper');
-      const scale = Math.min(1, (window.innerHeight - 100) / 1350);
-      wrapper.style.transform = `scale(` + scale + `)`;
-    }
-    window.addEventListener('resize', resizeFlyer);
-    resizeFlyer();
-
-    function downloadFlyer() {
-      const btn = document.getElementById('dl-btn');
-      btn.innerHTML = 'Generating PNG...';
-      const flyer = document.getElementById('flyer');
-      
-      const wrapper = document.getElementById('wrapper');
-      wrapper.style.transform = 'scale(1)';
-
-      // Switch to dom-to-image which is much more reliable with SVGs and styling
-      setTimeout(() => {
-        domtoimage.toPng(flyer, {
-          quality: 1,
-          bgcolor: '#071D59'
-        })
-        .then(function (dataUrl) {
-          const link = document.createElement('a');
-          link.download = 'BSquare-Salesforce-Flyer.png';
-          link.href = dataUrl;
-          link.click();
-          
-          btn.innerHTML = '&#8681; Download Full Image';
-          resizeFlyer();
-        })
-        .catch(function (error) {
-          console.error('oops, something went wrong!', error);
-          btn.innerHTML = 'Error downloading';
-          alert('Could not generate image automatically. Please use a screenshot tool.');
-          resizeFlyer();
-        });
-      }, 300);
-    }
+    // Javascript removed to prevent scaling issues with screenshot APIs.
+    // The image is now statically sized at 1080x1350.
   </script>
 </body>
 </html>
